@@ -6,15 +6,13 @@ import "./schooldefinition.sol";
 contract Certificate_Smart_Contract
 {
     address public owner;
-    School_Info private school;
-    Certificate_Info private cert;
+    address private student;
     Transcript_Info private trans;
 
-    constructor(Certificate_Info memory _cert, uint256 _signature, Course_Info[] memory _courseList)
+    constructor(address _studAdd, Certificate_Info memory _cert, uint256 _signature, Course_Info[] memory _courseList)
     {
         owner = msg.sender;
-        school = _cert.schoolInfo;
-        cert = _cert;
+        student = _studAdd;
         // trans = _trans; // not support
         trans.certificate  = _cert;
         trans.signature = _signature;
@@ -31,17 +29,18 @@ contract Certificate_Smart_Contract
         _;
     }
 
-    function transferOwnership(address _newOwner) public onlyOwner
+    modifier onlyOwnerAndStudent()
     {
-        owner = _newOwner;
+        require(msg.sender == owner || msg.sender == student, "Only owner and student allowed");
+        _;
     }
 
-    function getCertificate() public onlyOwner view returns (Certificate_Info memory)
+    function getCertificate() external onlyOwnerAndStudent view returns (Certificate_Info memory)
     {
-        return cert;
+        return trans.certificate;
     }
 
-    function getTranscript() public onlyOwner view returns (Transcript_Info memory)
+    function getTranscript() external onlyOwnerAndStudent view returns (Transcript_Info memory)
     {
         return trans;
     }

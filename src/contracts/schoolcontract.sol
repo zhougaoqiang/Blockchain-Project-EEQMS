@@ -39,11 +39,12 @@ contract School_Smart_Contract
     }
 
     //core function: issue student certificate contract
-    function studentGradutaion(uint256 _studId) public isAdmin returns (address)
+    function studentGradutaion(uint256 _studId, address _studAdd) public isAdmin returns (address)
     {
         require (sourceContract.isCurrentStudent(_studId) && sourceContract.checkGraduateRequirement(_studId), "No current student, or not match graduate requirement");
         
         Certificate_Smart_Contract newStudentContract = new Certificate_Smart_Contract(
+                                            _studAdd,
                                             sourceContract.getCurrentStudentCertificate(_studId), 
                                             sourceContract.getCurrentStudentTranscript(_studId).signature,
                                             sourceContract.getCurrentStudentTranscript(_studId).courseList);

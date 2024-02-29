@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "./schooldefinition.sol";
 import "./certificatescontract.sol";
 
-interface School_Source_Smart_Contract
+interface Interface_School_Source_Smart_Contract
 {
     function addGraduatedStudent(uint256 id, address _add) external;
     function getGraduatedStudent(uint256 id) external view returns (address);

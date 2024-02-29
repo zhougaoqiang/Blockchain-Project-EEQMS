@@ -7,29 +7,32 @@ import "./schoolofficeinterface.sol";
 
 contract School_Source_Smart_Contract
 {
-    mapping(uint256 => Certificate_Info) private studsCert;
     mapping(uint256 => Transcript_Info) private studsTrans;
     uint256[] private curStudArray;
     mapping(uint256 => address) private graduatedStudentInfo; //studentId => studentContractAddress
     Interface_School_Office_Smart_Contract officeContract;
 
-    //TODO: need add admin info;
     constructor(address officeContractAddress)
     {
         officeContract = Interface_School_Office_Smart_Contract(officeContractAddress);
     }
+    modifier onlyAdmin()
+    {
+        require(officeContract.isAdmin());
+        _;
+    }
 
-    function addGraduatedStudent(uint256 id, address _add) external
+    function addGraduatedStudent(uint256 id, address _add) external onlyAdmin
     {
         graduatedStudentInfo[id] = _add;
     }
 
-    function getGraduatedStudent(uint256 id) external view returns (address)
+    function getGraduatedStudent(uint256 id) external view onlyAdmin returns (address) 
     {
         return graduatedStudentInfo[id];
     }
 
-    function newStudent(Student_Info memory _stdInfo, School_Info memory _schoolInfo) external
+    function newStudent(Student_Info memory _stdInfo, School_Info memory _schoolInfo) external onlyAdmin
     {
         uint256 studentId = _stdInfo.id; //school must create a unqiure id for student first;
         Certificate_Info memory cert;
@@ -38,32 +41,31 @@ contract School_Source_Smart_Contract
         cert.status = EStudyStatus.InProgress;
         cert.admissionTimestamp = block.timestamp;
         cert.studentDetails = _stdInfo;
-        studsCert[studentId] = cert;
         curStudArray.push(studentId);
         studsTrans[studentId].certificate = cert;
     }
 
-    function addCurrentStudentCourseInfo(uint256 _studId, Course_Info memory _courseList) external
+    function addCurrentStudentCourseInfo(uint256 _studId, Course_Info memory _courseList) external onlyAdmin
     {
         studsTrans[_studId].courseList.push(_courseList);
     }
 
-    function getCurrentStudentCertificate(uint256 _stuId) external view returns (Certificate_Info memory)
+    function getCurrentStudentCertificate(uint256 _stuId) external view onlyAdmin returns (Certificate_Info memory)
     {
-        return studsCert[_stuId];
+        return studsTrans[_stuId].certificate;
     }
 
-    function getCurrentStudentTranscript(uint256 _stuId) external view returns (Transcript_Info memory)
+    function getCurrentStudentTranscript(uint256 _stuId) external view onlyAdmin returns (Transcript_Info memory)
     {
         return studsTrans[_stuId];
     }
     
-    function isCurrentStudent(uint256 _studId) external view returns (bool)
+    function isCurrentStudent(uint256 _studId) external view onlyAdmin returns (bool)
     {
         return isCurStudent(_studId);
     }
 
-    function isCurStudent(uint256 _stuId) private view returns (bool)
+    function isCurStudent(uint256 _stuId) private view onlyAdmin returns (bool)
     {
         for (uint i = 0; i < curStudArray.length; ++i)
         {
@@ -75,15 +77,15 @@ contract School_Source_Smart_Contract
         return false;
     }
 
-    function updateStudentCertificate(Certificate_Info memory _cert) external
+    function updateStudentCertificate(Certificate_Info memory _cert) onlyAdmin external
     {
         uint256 stuId = _cert.studentDetails.id;
         require (isCurStudent(stuId), "No current student, should admission first");
 
-        studsCert[stuId] = _cert;
+        studsTrans[stuId].certificate = _cert;
     }
 
-    function setStudentTranscript(Transcript_Info memory _trans) external
+    function setStudentTranscript(Transcript_Info memory _trans) onlyAdmin external
     {
         uint256 stuId = _trans.certificate.studentDetails.id;
         require(isCurStudent(stuId), "No transcripts or current student, invalid operation");
@@ -96,9 +98,9 @@ contract School_Source_Smart_Contract
         }
     }
 
-    function checkGraduateRequirement(uint256 _studId) external view returns (bool)
+    function checkGraduateRequirement(uint256 _studId) external onlyAdmin view returns (bool)
     {
-        if (studsCert[_studId].status != EStudyStatus.InProgress)
+        if (studsTrans[_studId].certificate.status != EStudyStatus.InProgress)
         {
             return true;
         }
@@ -118,7 +120,7 @@ contract School_Source_Smart_Contract
         return type(uint).max; //return a invalid value if not found;
     }
 
-    function removeStudent(uint256 _studId) external
+    function removeStudent(uint256 _studId) external onlyAdmin
     {
         uint studIndex = findStudentIndex(_studId);
         require(studIndex != type(uint).max, "student not in list");
