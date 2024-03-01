@@ -1,9 +1,8 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./schooldefinition.sol";
-import "./certificatescontract.sol";
-import "./schoolofficeinterface.sol";
+import "./interfaces/schooldefinition.sol";
+import "./interfaces/schoolofficeinterface.sol";
 
 contract School_Source_Smart_Contract
 {
@@ -101,13 +100,9 @@ contract School_Source_Smart_Contract
     function checkGraduateRequirement(uint256 _studId) external onlyAdmin view returns (bool)
     {
         if (studsTrans[_studId].certificate.status != EStudyStatus.InProgress)
-        {
             return true;
-        }
         else
-        {
             return false;
-        }
     }
 
     function findStudentIndex(uint256 _studId) private view returns (uint)

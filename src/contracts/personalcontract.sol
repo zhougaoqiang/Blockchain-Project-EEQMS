@@ -1,11 +1,11 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./otherdefinition.sol";
-import "./schooldefinition.sol";
-import "./certificatesinterface.sol";
+import "./interfaces/otherdefinition.sol";
+import "./interfaces/schooldefinition.sol";
+import "./interfaces/certificatesinterface.sol";
 
-contract Peronal_Smart_Contrac
+contract Peronal_Smart_Contract
 {
     address owner;
     address[] private companyAdmins;
@@ -41,16 +41,9 @@ contract Peronal_Smart_Contrac
         return false;
     }
 
-    function transferOwnership(address newOwner) external isOwner
-    {
-        owner = newOwner;
-    }
-
     function addCompanyAdmins(address _admin) public isOwner
     {
         companyAdmins.push(_admin);
-        Interface_Certificate_Smart_Contract certContract = Interface_Certificate_Smart_Contract(_admin);
-        certificates.push(certContract.getCertificate());
     }
 
     function removeAllAdmins() public isOwner
@@ -64,6 +57,8 @@ contract Peronal_Smart_Contrac
     function addCertiticateContract(address _add) public isOwner
     {
         certificateContracts.push(_add);
+        Interface_Certificate_Smart_Contract certContract = Interface_Certificate_Smart_Contract(_add);
+        certificates.push(certContract.getCertificate());
     }
 
     function getPersonalInfo() external view onlyOwnerOrCompanyAdmin returns (Personal_Info memory) 
@@ -74,6 +69,17 @@ contract Peronal_Smart_Contrac
     function getAllCertificates() external view onlyOwnerOrCompanyAdmin returns (Certificate_Info[] memory)
     {
         return certificates;
+    }
+
+    function getCertificatesCounts() external view onlyOwnerOrCompanyAdmin returns (uint)
+    {
+        return certificates.length;
+    }
+
+    function getCertificateByIndex(uint _index) external view onlyOwnerOrCompanyAdmin returns (Certificate_Info memory)
+    {
+        require(_index < certificates.length, "This certificate is not exist");
+        return certificates[_index];
     }
 
     function getCertificateAddressIndex(uint256 signature) private view returns (uint)

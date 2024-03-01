@@ -2,7 +2,6 @@
 pragma solidity ^0.8.0;
 
 import "./schooldefinition.sol";
-import "./certificatescontract.sol";
 
 interface Interface_School_Source_Smart_Contract
 {

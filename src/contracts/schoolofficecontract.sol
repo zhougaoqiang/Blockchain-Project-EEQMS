@@ -1,11 +1,11 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./schooldefinition.sol";
+import "./interfaces/schooldefinition.sol";
 
 contract School_Office_Smart_Contract
 {
-    address public owner; //gov
+    address owner;
     address[] private officers; //shcool admins
     School_Info public schoolInfo;
 
@@ -25,6 +25,11 @@ contract School_Office_Smart_Contract
     {
         require(msg.sender == owner || isOfficer(msg.sender), "only onwer or officer allowed");
         _;
+    }
+
+    function withdraw() public onlyOwner
+    {
+        payable(owner).transfer(address(this).balance);
     }
 
     function isAdmin() external view returns (bool)

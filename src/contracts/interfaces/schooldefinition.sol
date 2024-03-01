@@ -36,7 +36,7 @@ struct School_Info
     address schoolContractAddress;
     string id;
     string name;
-    string add; //schoolAddress
+    string add; //school physical Address
     string email;
     ECertificateCategory[] allowedCategory;
 }
@@ -64,7 +64,7 @@ struct Certificate_Info
     uint admissionTimestamp;
     uint graduationTimestamp;
     Student_Info studentDetails;
-    uint256 signature;
+    uint256 signature; //hash value
 }
 
 struct Course_Info
@@ -80,5 +80,5 @@ struct Transcript_Info
 {
     Certificate_Info certificate;
     Course_Info[] courseList;
-    uint256 signature;
+    uint256 signature; //hash value
 }

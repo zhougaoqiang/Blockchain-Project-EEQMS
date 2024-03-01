@@ -2,9 +2,6 @@
 pragma solidity ^0.8.0;
 
 import "./schooldefinition.sol";
-import "./certificatesinterface.sol";
-import "./schoolofficeinterface.sol";
-import "./schoolsourceinterface.sol";
 
 interface Interface_School_Verification_Service_Smart_Contract
 {
