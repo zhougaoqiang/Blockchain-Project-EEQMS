@@ -42,9 +42,11 @@ contract School_Verification_Service_Smart_Contract
     {
         verifyTransfee = _fee;
     }
-
-    function verifyGraduatedStudentCertificate(Certificate_Info memory _cert) external view returns (bool) 
+ 
+    function verifyGraduatedStudentCertificate(Certificate_Info memory _cert) external payable returns (bool) 
     {
+        require(msg.value >= verifyCertfee, "Insufficient fee for verification");
+
         uint256 studId = _cert.studentDetails.id;
         Interface_Certificate_Smart_Contract certInterface = Interface_Certificate_Smart_Contract(
                                 sourceContract.getGraduatedStudent(studId));
@@ -53,8 +55,10 @@ contract School_Verification_Service_Smart_Contract
         return Hash_Lib.verifyCertificate(_cert, certInDatabase.signature);
     }
 
-    function verifyGraduateStudentTranscript(Transcript_Info memory  _trans) external view returns (bool)
+    function verifyGraduateStudentTranscript(Transcript_Info memory  _trans) external payable returns (bool)
     {
+        require(msg.value >= verifyTransfee, "Insufficient fee for verification");
+
         Interface_Certificate_Smart_Contract certInterface = Interface_Certificate_Smart_Contract(
                                 sourceContract.getGraduatedStudent(_trans.certificate.studentDetails.id));
         uint256 signInDatabase = certInterface.getTranscript().signature;

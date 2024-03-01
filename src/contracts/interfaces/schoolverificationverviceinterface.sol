@@ -5,6 +5,6 @@ import "./schooldefinition.sol";
 
 interface Interface_School_Verification_Service_Smart_Contract
 {
-    function verifyGraduatedStudentCertificate(Certificate_Info memory _cert) external view returns (bool);
-    function verifyGraduateStudentTranscript(Transcript_Info memory  _trans) external view returns (bool);
+    function verifyGraduatedStudentCertificate(Certificate_Info memory _cert) external payable returns (bool);
+    function verifyGraduateStudentTranscript(Transcript_Info memory  _trans) external payable returns (bool);
 }
