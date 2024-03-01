@@ -94,7 +94,7 @@ contract Company_Smart_Contract
         staffContractAddressList.pop();
     }
 
-    function verifyStaffCertificate(uint256 _id, bool verifyTransAlso) external view returns (bool)
+    function verifyStaffCertificate(uint256 _id, bool verifyTransAlso) external payable returns (bool)
     {
         uint index = findStaffIndex(_id);
         require(index != type(uint).max, "not find thie staff");
@@ -109,15 +109,23 @@ contract Company_Smart_Contract
             Interface_School_Smart_Contract schoolContract = Interface_School_Smart_Contract(cert.schoolInfo.schoolContractAddress);
             Interface_School_Verification_Service_Smart_Contract verifyContact = Interface_School_Verification_Service_Smart_Contract(schoolContract.getSchoolVerificationServiceContract());
             bool isOk = false;
-            if (!verifyTransAlso)
+            uint verificationFee;
+            if (!verifyTransAlso) 
             {
-                isOk = verifyContact.verifyGraduatedStudentCertificate(cert);
-            }
-            else
-            {
-                isOk = verifyContact.verifyGraduateStudentTranscript(
-                personContract.getTranscript(cert));
+                verificationFee = verifyContact.getCertificateFee();
+                (bool success, bytes memory data) = address(verifyContact).call{value: verificationFee}(
+                    abi.encodeWithSignature("verifyGraduatedStudentCertificate((uint256,Student_Info,School_Info,string))", cert));
+                require(success, "Verification failed");
+                isOk = abi.decode(data, (bool));
             } 
+            else 
+            {
+                verificationFee = verifyContact.getTranscationFee();
+                (bool success, bytes memory data) = address(verifyContact).call{value: verificationFee}(
+                    abi.encodeWithSignature("verifyGraduateStudentTranscript((Certificate_Info,Transcript_Info))", personContract.getTranscript(cert)));
+                require(success, "Verification failed");
+                isOk = abi.decode(data, (bool));
+            }
 
             if (!isOk)
             {

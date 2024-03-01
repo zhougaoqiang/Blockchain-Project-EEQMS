@@ -42,6 +42,16 @@ contract School_Verification_Service_Smart_Contract
     {
         verifyTransfee = _fee;
     }
+
+    function getCertificateFee() external view returns (uint)
+    {
+        return verifyCertfee;
+    }
+
+    function getTranscationFee() external view returns (uint)
+    {
+        return verifyTransfee;
+    }
  
     function verifyGraduatedStudentCertificate(Certificate_Info memory _cert) external payable returns (bool) 
     {

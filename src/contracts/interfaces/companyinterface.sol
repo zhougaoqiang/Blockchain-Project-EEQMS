@@ -11,5 +11,5 @@ interface Interface_Company_Smart_Contract
     function removeAllAdmins() external;
     function addStaff(Personal_Info memory _personalInfo, address staffContractAdd) external;
     function removeStaff(uint256 _id) external;
-    function verifyStaffCertificate(uint256 _id, bool verifyTransAlso) external view returns (bool);
+    function verifyStaffCertificate(uint256 _id, bool verifyTransAlso) external payable returns (bool);
 }
