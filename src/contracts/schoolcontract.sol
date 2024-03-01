@@ -4,23 +4,24 @@ pragma solidity ^0.8.0;
 import "./interfaces/schooldefinition.sol";
 import "./certificatescontract.sol";
 import "./schoolofficecontract.sol";
-import "./schoolsourcecontract.sol";
-import "./schoolverificationvervicecontract.sol";
+// import "./schoolsourcecontract.sol";
+// import "./schoolverificationvervicecontract.sol";
+import "./interfaces/schoolsourceinterface.sol";
+import "./interfaces/schoolverificationverviceinterface.sol";
 import "./library/schoolhashlib.sol";
 
 contract School_Smart_Contract
 {
     using Hash_Lib for * ;
     School_Office_Smart_Contract officeContract;
-    School_Source_Smart_Contract sourceContract;
-    School_Verification_Service_Smart_Contract verifyContract;
+    Interface_School_Source_Smart_Contract sourceContract;
+    Interface_School_Verification_Service_Smart_Contract verifyContract;
 
     constructor(School_Info memory _schoolInfo)
     {
         _schoolInfo.schoolContractAddress = address(this);
         officeContract = new School_Office_Smart_Contract(_schoolInfo);
-        sourceContract = new School_Source_Smart_Contract(address(officeContract));
-        verifyContract = new School_Verification_Service_Smart_Contract(address(officeContract), address(sourceContract));
+        // sourceContract = new School_Source_Smart_Contract(address(officeContract));
     }
 
     modifier isAdmin()
@@ -34,9 +35,19 @@ contract School_Smart_Contract
         return address(officeContract);
     }
 
+    function setSchoolSrouceContract(address _sourceContract) external
+    {
+        sourceContract = Interface_School_Source_Smart_Contract(_sourceContract);
+    }
+
     function getSchoolSourceContract() external view returns (address)
     {
         return address(sourceContract);
+    }
+
+    function setSchoolVerificationServiceContract(address _verifyContract) external
+    {
+        verifyContract = Interface_School_Verification_Service_Smart_Contract(_verifyContract);
     }
 
     function getSchoolVerificationServiceContract() external view returns (address)

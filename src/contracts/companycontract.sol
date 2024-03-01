@@ -112,7 +112,7 @@ contract Company_Smart_Contract
             uint verificationFee;
             if (!verifyTransAlso) 
             {
-                verificationFee = verifyContact.getCertificateFee();
+                verificationFee = verifyContact.getVerifyFee();
                 (bool success, bytes memory data) = address(verifyContact).call{value: verificationFee}(
                     abi.encodeWithSignature("verifyGraduatedStudentCertificate((uint256,Student_Info,School_Info,string))", cert));
                 require(success, "Verification failed");
@@ -120,7 +120,7 @@ contract Company_Smart_Contract
             } 
             else 
             {
-                verificationFee = verifyContact.getTranscationFee();
+                verificationFee = verifyContact.getVerifyFee();
                 (bool success, bytes memory data) = address(verifyContact).call{value: verificationFee}(
                     abi.encodeWithSignature("verifyGraduateStudentTranscript((Certificate_Info,Transcript_Info))", personContract.getTranscript(cert)));
                 require(success, "Verification failed");

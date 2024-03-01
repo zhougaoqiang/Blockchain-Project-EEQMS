@@ -13,8 +13,7 @@ contract School_Verification_Service_Smart_Contract
 
     Interface_School_Office_Smart_Contract officeContract;
     Interface_School_Source_Smart_Contract sourceContract;
-    uint private verifyCertfee;
-    uint private verifyTransfee;
+    uint private verifyFee;
 
     constructor(address _office, address _source)
     {
@@ -33,29 +32,19 @@ contract School_Verification_Service_Smart_Contract
         payable(address(officeContract)).transfer(address(this).balance);
     }
 
-    function updateVerifyCertificateFee(uint _fee) public onlyOwner
+    function updateVerifyFee(uint _fee) public onlyOwner
     {
-        verifyCertfee = _fee;
+        verifyFee = _fee;
     }
-
-    function updateVerifyTranscriptFee(uint _fee) public onlyOwner
+    
+    function getVerifyFee() external view returns (uint)
     {
-        verifyTransfee = _fee;
-    }
-
-    function getCertificateFee() external view returns (uint)
-    {
-        return verifyCertfee;
-    }
-
-    function getTranscationFee() external view returns (uint)
-    {
-        return verifyTransfee;
+        return verifyFee;
     }
  
     function verifyGraduatedStudentCertificate(Certificate_Info memory _cert) external payable returns (bool) 
     {
-        require(msg.value >= verifyCertfee, "Insufficient fee for verification");
+        require(msg.value >= verifyFee, "Insufficient fee for verification");
 
         uint256 studId = _cert.studentDetails.id;
         Interface_Certificate_Smart_Contract certInterface = Interface_Certificate_Smart_Contract(
@@ -67,7 +56,7 @@ contract School_Verification_Service_Smart_Contract
 
     function verifyGraduateStudentTranscript(Transcript_Info memory  _trans) external payable returns (bool)
     {
-        require(msg.value >= verifyTransfee, "Insufficient fee for verification");
+        require(msg.value >= verifyFee, "Insufficient fee for verification");
 
         Interface_Certificate_Smart_Contract certInterface = Interface_Certificate_Smart_Contract(
                                 sourceContract.getGraduatedStudent(_trans.certificate.studentDetails.id));
