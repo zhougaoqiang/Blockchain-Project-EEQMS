@@ -1,67 +1,46 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./interfaces/otherdefinition.sol";
-import "./interfaces/schooldefinition.sol";
-import "./interfaces/certificatesinterface.sol";
-import "./interfaces/personalinterface.sol";
-import "./interfaces/schoolinterface.sol";
-import "./interfaces/schoolverificationverviceinterface.sol";
+import "../commoncontracts/iofficecontract.sol";
+import "../commoncontracts/isourcecontract.sol";
+import "../commoncontracts/commondefinition.sol";
+import "../person/ipersoncontract.sol";
+import "../school/ischoolcontract.sol";
+import "../government/igovernmentcontract.sol";
 
 contract Company_Smart_Contract
 {
-    address owner;
-    address[] private companyAdmins;
+    Interface_Office_Smart_Contract officeContract;
+    Interface_Source_Smart_Contract staffContractSource;
     Company_Info public companyInfo;
-    address[] staffContractAddressList;
     Personal_Info[] staffInfoList;
+    address governmentAddress;
 
-    constructor(Company_Info memory _companyInfo)
+    constructor(address _govAdd, address _office, address _staffContractSource)
     {
-        companyInfo = _companyInfo;
+        governmentAddress = _govAdd;
+        officeContract = Interface_Office_Smart_Contract(_office);
+        staffContractSource = Interface_Source_Smart_Contract(_staffContractSource);
     }
 
     modifier isOwner()
     {
-        require(msg.sender == owner, "only owner allowed");
+        require(officeContract.isOwner(), "only owner allowed");
         _;
     }
 
     modifier onlyOwnerOrCompanyAdmin()
     {
-        require(msg.sender == owner || isCompanyAdmin(msg.sender), "only Owner Or Company Admin");
+        require(officeContract.isOwnerOrOfficer(msg.sender), "only Owner Or Company Admin");
         _;
     }
 
-    function isCompanyAdmin(address admin) private view returns (bool)
+    function setCompanyInfo(Company_Info memory _info) external isOwner
     {
-        for (uint i = 0; i < companyAdmins.length; ++i)
-        {
-            if (admin == companyAdmins[i])
-                return true;
-        }
-        return false;
+        companyInfo = _info;
     }
 
-    function transferOwnership(address newOwner) external isOwner
-    {
-        owner = newOwner;
-    }
-
-    function addCompanyAdmins(address _admin) external isOwner
-    {
-        companyAdmins.push(_admin);
-    }
-
-    function removeAllAdmins() external isOwner
-    {
-        for(uint i = 0; i < companyAdmins.length; ++i)
-        {
-            companyAdmins.pop();
-        }
-    }
-
-    function getCompanyInfo() external view onlyOwnerOrCompanyAdmin returns (Company_Info memory) 
+    function getCompanyInfo() external view returns (Company_Info memory) 
     {
         return companyInfo;
     }
@@ -69,7 +48,7 @@ contract Company_Smart_Contract
     function addStaff(Personal_Info memory _personalInfo, address staffContractAdd) external onlyOwnerOrCompanyAdmin
     {
         staffInfoList.push(_personalInfo);
-        staffContractAddressList.push(staffContractAdd);
+        staffContractSource.addAddress(staffContractAdd);
     }
 
     function findStaffIndex(uint256 id) private view returns (uint)
@@ -90,38 +69,41 @@ contract Company_Smart_Contract
 
         staffInfoList[index] = staffInfoList[staffInfoList.length - 1];
         staffInfoList.pop();
-        staffContractAddressList[index] = staffContractAddressList[staffContractAddressList.length - 1];
-        staffContractAddressList.pop();
+        staffContractSource.removeAddressByIndex(index);
     }
 
-    function verifyStaffCertificate(uint256 _id, bool verifyTransAlso) external payable returns (bool)
+    function verifyStaffCertificate(uint256 _id, bool verifyTransAlso) external returns (bool)
     {
         uint index = findStaffIndex(_id);
         require(index != type(uint).max, "not find thie staff");
 
-        Interface_Peronal_Smart_Contract personContract = Interface_Peronal_Smart_Contract(staffContractAddressList[index]);
+        Interface_Peronal_Smart_Contract personContract = Interface_Peronal_Smart_Contract(staffContractSource.getAddress(index));
         uint noOfCerts = personContract.getCertificatesCounts();
         require (noOfCerts > 0, "No cert exist");
 
         for (uint i = 0; i < noOfCerts; ++i)
         {
             Certificate_Info memory cert = personContract.getCertificateByIndex(i);
+            Interface_Government_Smart_Contract gov = Interface_Government_Smart_Contract(governmentAddress);
+            if (!gov.isRegisterSchool(cert.schoolInfo.schoolContractAddress))
+            {
+                return false;
+            }
             Interface_School_Smart_Contract schoolContract = Interface_School_Smart_Contract(cert.schoolInfo.schoolContractAddress);
-            Interface_School_Verification_Service_Smart_Contract verifyContact = Interface_School_Verification_Service_Smart_Contract(schoolContract.getSchoolVerificationServiceContract());
             bool isOk = false;
             uint verificationFee;
             if (!verifyTransAlso) 
             {
-                verificationFee = verifyContact.getVerifyFee();
-                (bool success, bytes memory data) = address(verifyContact).call{value: verificationFee}(
+                verificationFee = schoolContract.getVerifyFee();
+                (bool success, bytes memory data) = address(schoolContract).call{value: verificationFee}(
                     abi.encodeWithSignature("verifyGraduatedStudentCertificate((uint256,Student_Info,School_Info,string))", cert));
                 require(success, "Verification failed");
                 isOk = abi.decode(data, (bool));
             } 
             else 
             {
-                verificationFee = verifyContact.getVerifyFee();
-                (bool success, bytes memory data) = address(verifyContact).call{value: verificationFee}(
+                verificationFee = schoolContract.getVerifyFee();
+                (bool success, bytes memory data) = address(schoolContract).call{value: verificationFee}(
                     abi.encodeWithSignature("verifyGraduateStudentTranscript((Certificate_Info,Transcript_Info))", personContract.getTranscript(cert)));
                 require(success, "Verification failed");
                 isOk = abi.decode(data, (bool));
