@@ -11,6 +11,6 @@ import "../library/schoolhashlib.sol";
 interface Interface_School_Smart_Contract
 {
     function getVerifyFee() external view returns (uint);
-    function verifyGraduatedStudentCertificate(Certificate_Info memory _cert) external payable returns (bool);
-    function verifyGraduateStudentTranscript(Transcript_Info memory  _trans) external payable returns (bool);
+    function verifyGraduatedStudentCertificate(Certificate_Info memory _cert) external returns (bool);
+    function verifyGraduateStudentTranscript(Transcript_Info memory  _trans) external returns (bool);
 }

@@ -7,6 +7,7 @@ import "../commoncontracts/commondefinition.sol";
 import "../person/ipersoncontract.sol";
 import "../school/ischoolcontract.sol";
 import "../government/igovernmentcontract.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract Company_Smart_Contract
 {
@@ -15,12 +16,14 @@ contract Company_Smart_Contract
     Company_Info public companyInfo;
     Personal_Info[] staffInfoList;
     address governmentAddress;
+    IERC20 private tokenContract;
 
-    constructor(address _govAdd, address _office, address _staffContractSource)
+    constructor(address _govAdd, address _office, address _staffContractSource, address _token)
     {
         governmentAddress = _govAdd;
         officeContract = Interface_Office_Smart_Contract(_office);
         staffContractSource = Interface_Source_Smart_Contract(_staffContractSource);
+        tokenContract = IERC20(_token);
     }
 
     modifier isOwner()
@@ -91,22 +94,17 @@ contract Company_Smart_Contract
             }
             Interface_School_Smart_Contract schoolContract = Interface_School_Smart_Contract(cert.schoolInfo.schoolContractAddress);
             bool isOk = false;
-            uint verificationFee;
             if (!verifyTransAlso) 
             {
-                verificationFee = schoolContract.getVerifyFee();
-                (bool success, bytes memory data) = address(schoolContract).call{value: verificationFee}(
-                    abi.encodeWithSignature("verifyGraduatedStudentCertificate((uint256,Student_Info,School_Info,string))", cert));
-                require(success, "Verification failed");
-                isOk = abi.decode(data, (bool));
+                 // 在UI中或通过直接与代币合约交互之前完成
+                 // tokenContract.approve(schoolContractAddress, amount);
+                isOk = schoolContract.verifyGraduatedStudentCertificate(cert);
             } 
             else 
             {
-                verificationFee = schoolContract.getVerifyFee();
-                (bool success, bytes memory data) = address(schoolContract).call{value: verificationFee}(
-                    abi.encodeWithSignature("verifyGraduateStudentTranscript((Certificate_Info,Transcript_Info))", personContract.getTranscript(cert)));
-                require(success, "Verification failed");
-                isOk = abi.decode(data, (bool));
+                // 在UI中或通过直接与代币合约交互之前完成
+                // tokenContract.approve(schoolContractAddress, amount);
+                isOk = schoolContract.verifyGraduateStudentTranscript(personContract.getTranscript(cert));
             }
 
             if (!isOk)
