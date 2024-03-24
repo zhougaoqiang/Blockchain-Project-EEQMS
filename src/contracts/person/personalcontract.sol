@@ -7,6 +7,23 @@ import "../commoncontracts/iofficecontract.sol";
 import "../commoncontracts/isourcecontract.sol";
 import "../school/icertificatecontract.sol";
 
+/*
+the person smart contract should create after software release
+
+company contract deploy sequence.
+1. deploy office contract
+2. deploy source contract (need office address)
+3. deploy person smart contract with office and source contract.
+
+ADDITIONAL:
+the website should add register page and login page.
+register function should follow above deploy sequence.
+
+login page need user provide company smart contract address. we can return error if cannot get anything.
+
+*/
+
+
 contract Peronal_Smart_Contract
 {
     Interface_Office_Smart_Contract officeContract;
@@ -14,10 +31,10 @@ contract Peronal_Smart_Contract
     Personal_Info private personalInfo;
     Certificate_Info[] certificates;
 
-    constructor(address _off, address _cert)
+    constructor(address _off, address _source)
     {
         officeContract = Interface_Office_Smart_Contract(_off);
-        certificateContracts = Interface_Source_Smart_Contract(_cert);
+        certificateContracts = Interface_Source_Smart_Contract(_source);
     }
 
     modifier onlyOwner()

@@ -9,6 +9,23 @@ import "./iverificationcontract.sol";
 import "../library/schoolhashlib.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
+/*
+the school smart contract should create after software release
+
+company contract deploy sequence.
+1. deploy office contract
+2. deploy school source contract (need office contract address)
+3. deploy verificationcontract (need school source contact)
+4. deploy school smart contract with office, source, and verification contract, and ERC20 also.
+
+ADDITIONAL:
+the website should add register page and login page.
+register function should follow above deploy sequence.
+
+login page need user provide company smart contract address. we can return error if cannot get anything.
+
+*/
+
 contract School_Smart_Contract
 {
     using Hash_Lib for * ;

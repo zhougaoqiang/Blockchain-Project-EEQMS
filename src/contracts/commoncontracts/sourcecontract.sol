@@ -2,6 +2,11 @@
 pragma solidity ^0.8.0;
 import "./iofficecontract.sol";
 
+/*
+the source contract always need office contract support.
+*/
+
+
 contract Source_Smart_Contract
 {
     Interface_Office_Smart_Contract officeContract;

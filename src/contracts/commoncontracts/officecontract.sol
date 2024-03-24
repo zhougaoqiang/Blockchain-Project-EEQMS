@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// use to manager admin rights.
+// use to manage admin rights.
 contract Office_Smart_Contract
 {
     address owner;
