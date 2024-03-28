@@ -1,11 +1,12 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../commoncontracts/commondefinition.sol";
-import "../commoncontracts/schooldefinition.sol";
-import "../commoncontracts/iofficecontract.sol";
-import "../commoncontracts/isourcecontract.sol";
-import "../school/icertificatecontract.sol";
+import "../commoncontracts/CommonDefinition.sol";
+import "../commoncontracts/SchoolDefinition.sol";
+import "../commoncontracts/IOffice.sol";
+import "../commoncontracts/ISource.sol";
+import "../school/ICertificate.sol";
+import "./IPerson.sol";
 
 /*
 the person smart contract should create after software release
@@ -24,17 +25,17 @@ login page need user provide company smart contract address. we can return error
 */
 
 
-contract Peronal_Smart_Contract
+contract Person is IPerson
 {
-    Interface_Office_Smart_Contract officeContract;
-    Interface_Source_Smart_Contract certificateContracts;
+    IOffice officeContract;
+    ISource certificateContracts;
     Personal_Info private personalInfo;
     Certificate_Info[] certificates;
 
     constructor(address _off, address _source)
     {
-        officeContract = Interface_Office_Smart_Contract(_off);
-        certificateContracts = Interface_Source_Smart_Contract(_source);
+        officeContract = IOffice(_off);
+        certificateContracts = ISource(_source);
     }
 
     modifier onlyOwner()
@@ -52,7 +53,7 @@ contract Peronal_Smart_Contract
     function addCertiticateContract(address _add) public onlyOwner
     {
         certificateContracts.addAddress(_add);
-        Interface_Certificate_Smart_Contract certContract = Interface_Certificate_Smart_Contract(_add);
+        ICertificate certContract = ICertificate(_add);
         certificates.push(certContract.getCertificate());
     }
 
@@ -99,7 +100,7 @@ contract Peronal_Smart_Contract
 
         Transcript_Info memory trans;
         trans.certificate = certificates[index];
-        Interface_Certificate_Smart_Contract certContract = Interface_Certificate_Smart_Contract(certificateContracts.getAddress(index));
+        ICertificate certContract = ICertificate(certificateContracts.getAddress(index));
         trans.signature = certContract.getTranscript().signature;
         trans.courseList = new Course_Info[](certContract.getTranscript().courseList.length); 
         for(uint i = 0; i < certContract.getTranscript().courseList.length; ++i)

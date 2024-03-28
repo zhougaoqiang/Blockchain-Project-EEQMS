@@ -1,13 +1,14 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../commoncontracts/schooldefinition.sol";
-import "./icertificatecontract.sol";
-import "../commoncontracts/iofficecontract.sol";
-import "./ischoolsourcecontract.sol";
-import "./iverificationcontract.sol";
+import "../commoncontracts/SchoolDefinition.sol";
+import "./ICertificate.sol";
+import "../commoncontracts/IOffice.sol";
+import "./ISchoolSource.sol";
+import "./IVerification.sol";
 import "../library/schoolhashlib.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "../TOKEN/IERC20.sol";
+import "./ISchool.sol";
 
 /*
 the school smart contract should create after software release
@@ -26,21 +27,21 @@ login page need user provide company smart contract address. we can return error
 
 */
 
-contract School_Smart_Contract
+contract School is ISchool
 {
     using Hash_Lib for * ;
-    Interface_Office_Smart_Contract private officeContract;
-    Interface_School_Source_Smart_Contract private sourceContract;
-    Interface_Verification_Smart_Contract private verifyContract;
+    IOffice private officeContract;
+    ISchoolSource private sourceContract;
+    IVerification private verifyContract;
     uint private verifyFee;
     School_Info public schoolInfo;
     IERC20 private tokenContract;
 
     constructor(address _off, address _source, address _verify, address _tokenContract)
     {
-        officeContract = Interface_Office_Smart_Contract(_off);
-        sourceContract = Interface_School_Source_Smart_Contract(_source);
-        verifyContract = Interface_Verification_Smart_Contract(_verify);
+        officeContract = IOffice(_off);
+        sourceContract = ISchoolSource(_source);
+        verifyContract = IVerification(_verify);
         tokenContract = IERC20(_tokenContract);
     }
 
@@ -97,7 +98,7 @@ contract School_Smart_Contract
         cert.signature = Hash_Lib.hashCertificate(cert);
         uint256 transSig = Hash_Lib.hashTranscript(sourceContract.getCurrentStudentTranscript(_studId), true);
 
-        Interface_Certificate_Smart_Contract studContract = Interface_Certificate_Smart_Contract(newStudentContract);
+        ICertificate studContract = ICertificate(newStudentContract);
         studContract.setCertificate(cert);
         studContract.setSignature(transSig);
         studContract.setCourseInfo(sourceContract.getCurrentStudentTranscript(_studId).courseList);

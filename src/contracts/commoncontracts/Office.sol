@@ -1,8 +1,10 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-
+import "./IOffice.sol";
 // use to manage admin rights.
-contract Office_Smart_Contract
+import "hardhat/console.sol";
+
+contract Office is IOffice
 {
     address owner;
     address[] officerList;
@@ -12,15 +14,15 @@ contract Office_Smart_Contract
         owner = msg.sender;
     }
 
-    function transferOwnership(address newOwner) external
+    function transferOwnership(address _oriOwner, address _newOwner) external
     {
-        require(owner == msg.sender, "only owner can transfer ownership");
-        owner = newOwner;
+        require(owner == _oriOwner, "only owner can transfer ownership");
+        owner = _newOwner;
     }
 
-    function isOwner() external view returns (bool)
+    function isOwner(address _owner) external view returns (bool)
     {
-        if (owner == msg.sender)
+        if (owner == _owner)
             return true;
         else
             return false;
@@ -47,7 +49,8 @@ contract Office_Smart_Contract
 
     function isOwnerOrOfficer(address _add) external view returns (bool)
     {
-        if (owner == msg.sender)
+        console.log("get Address => ", _add);
+        if (owner == _add)
             return true;
 
         uint index = findOfficerAddressIndexInArray(_add);
@@ -57,15 +60,15 @@ contract Office_Smart_Contract
             return false;
     }
 
-    function addOfficer(address _add) external 
+    function addOfficer(address _owner, address _add) external 
     {
-        require(owner == msg.sender, "only owner can add officer");
+        require(owner == _owner, "only owner can add officer");
         officerList.push(_add);
     }
 
-    function removeOfficer(address _add) external
+    function removeOfficer(address _owner, address _add) external
     {
-        require(owner == msg.sender, "only owner can remove officer");
+        require(owner == _owner, "only owner can remove officer");
 
         uint index = findOfficerAddressIndexInArray(_add);
         require(index != type(uint).max, "not exist");

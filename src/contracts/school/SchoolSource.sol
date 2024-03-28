@@ -1,19 +1,20 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../commoncontracts/schooldefinition.sol";
-import "../commoncontracts/iofficecontract.sol";
+import "../commoncontracts/SchoolDefinition.sol";
+import "../commoncontracts/IOffice.sol";
+import "./ISchoolSource.sol";
 
-contract School_Source_Smart_Contract
+contract SchoolSource is ISchoolSource
 {
     mapping(uint256 => Transcript_Info) private studsTrans;
     uint256[] private curStudArray;
     mapping(uint256 => address) private graduatedStudentInfo; //studentId => studentContractAddress
-    Interface_Office_Smart_Contract officeContract;
+    IOffice officeContract;
 
     constructor(address officeContractAddress)
     {
-        officeContract = Interface_Office_Smart_Contract(officeContractAddress);
+        officeContract = IOffice(officeContractAddress);
     }
     modifier onlyAdmin()
     {

@@ -1,22 +1,23 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-import "./iofficecontract.sol";
+import "./IOffice.sol";
+import "./ISource.sol";
 
 /*
 the source contract always need office contract support.
 */
 
 
-contract Source_Smart_Contract
+contract Source is ISource
 {
-    Interface_Office_Smart_Contract officeContract;
+    IOffice officeContract;
     uint count;
     address[] private subSourceAdds;
 
     constructor(address _officeAdd)
     {
         count = 0;
-        officeContract = Interface_Office_Smart_Contract(_officeAdd);
+        officeContract = IOffice(_officeAdd);
     }
 
     modifier onlyAdmin()

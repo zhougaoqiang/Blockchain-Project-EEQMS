@@ -1,9 +1,10 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../commoncontracts/schooldefinition.sol";
+import "../commoncontracts/SchoolDefinition.sol";
+import "./ICertificate.sol";
 
-contract Certificate_Smart_Contract
+contract Certificate is ICertificate
 {
     address private owner;
     Transcript_Info private trans;

@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-interface Interface_Source_Smart_Contract
+interface ISource
 {
     function addAddress(address _add) external;
     function hasAddress(address _add) external view returns (bool);

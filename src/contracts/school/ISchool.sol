@@ -1,14 +1,9 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../commoncontracts/schooldefinition.sol";
-import "./certificatecontract.sol";
-import "../commoncontracts/iofficecontract.sol";
-import "./schoolsourcecontract.sol";
-import "./iverificationcontract.sol";
-import "../library/schoolhashlib.sol";
+import "../commoncontracts/SchoolDefinition.sol";
 
-interface Interface_School_Smart_Contract
+interface ISchool
 {
     function getVerifyFee() external view returns (uint);
     function verifyGraduatedStudentCertificate(Certificate_Info memory _cert) external returns (bool);

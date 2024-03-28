@@ -1,13 +1,13 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../commoncontracts/iofficecontract.sol";
-import "../commoncontracts/isourcecontract.sol";
-import "../commoncontracts/commondefinition.sol";
-import "../person/ipersoncontract.sol";
-import "../school/ischoolcontract.sol";
-import "../government/igovernmentcontract.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "../commoncontracts/IOffice.sol";
+import "../commoncontracts/ISource.sol";
+import "../commoncontracts/CommonDefinition.sol";
+import "../person/IPerson.sol";
+import "../school/ISchool.sol";
+import "../government/IGovernment.sol";
+import "../TOKEN/IERC20.sol";
 
 /*
 the company smart contract should create after software release
@@ -25,10 +25,10 @@ login page need user provide company smart contract address. we can return error
 
 */
 
-contract Company_Smart_Contract
+contract Company
 {
-    Interface_Office_Smart_Contract officeContract;
-    Interface_Source_Smart_Contract staffContractSource;
+    IOffice officeContract;
+    ISource staffContractSource;
     Company_Info public companyInfo;
     Personal_Info[] staffInfoList;
     address governmentAddress;
@@ -37,8 +37,8 @@ contract Company_Smart_Contract
     constructor(address _govAdd, address _office, address _staffContractSource, address _token)
     {
         governmentAddress = _govAdd;
-        officeContract = Interface_Office_Smart_Contract(_office);
-        staffContractSource = Interface_Source_Smart_Contract(_staffContractSource);
+        officeContract = IOffice(_office);
+        staffContractSource = ISource(_staffContractSource);
         tokenContract = IERC20(_token);
     }
 
@@ -95,7 +95,7 @@ contract Company_Smart_Contract
     {
         uint index = findStaffIndex(_id);
         require(index != type(uint).max, "not find thie staff");
-        Interface_Peronal_Smart_Contract personContract = Interface_Peronal_Smart_Contract(staffContractSource.getAddress(index));
+        IPerson personContract = IPerson(staffContractSource.getAddress(index));
         uint noOfCerts = personContract.getCertificatesCounts();
         require (noOfCerts > 0, "No cert exist");
 
@@ -107,13 +107,13 @@ contract Company_Smart_Contract
         uint index = findStaffIndex(_id);
         require(index != type(uint).max, "not find thie staff");
 
-        Interface_Government_Smart_Contract gov = Interface_Government_Smart_Contract(governmentAddress);
+        IGovernment gov = IGovernment(governmentAddress);
         if (!gov.isRegisterSchool(_cert.schoolInfo.schoolContractAddress))
         {
             return false;
         }
         
-        Interface_School_Smart_Contract schoolContract = Interface_School_Smart_Contract(_cert.schoolInfo.schoolContractAddress);
+        ISchool schoolContract = ISchool(_cert.schoolInfo.schoolContractAddress);
         bool isOk = false;
         if (!verifyTransAlso) 
         {
@@ -125,7 +125,7 @@ contract Company_Smart_Contract
         {
             // 在UI中或通过直接与代币合约交互之前完成
              // tokenContract.approve(schoolContractAddress, amount);
-             Interface_Peronal_Smart_Contract personContract = Interface_Peronal_Smart_Contract(staffContractSource.getAddress(index));
+             IPerson personContract = IPerson(staffContractSource.getAddress(index));
              isOk = schoolContract.verifyGraduateStudentTranscript(personContract.getTranscript(_cert));
         }
 
@@ -140,7 +140,7 @@ contract Company_Smart_Contract
         uint index = findStaffIndex(_id);
         require(index != type(uint).max, "not find thie staff");
 
-        Interface_Peronal_Smart_Contract personContract = Interface_Peronal_Smart_Contract(staffContractSource.getAddress(index));
+        IPerson personContract = IPerson(staffContractSource.getAddress(index));
         uint noOfCerts = personContract.getCertificatesCounts();
         require (noOfCerts > 0, "No cert exist");
 

@@ -1,9 +1,9 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-
-import "../commoncontracts/iofficecontract.sol";
-import "../commoncontracts/isourcecontract.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol"; 
+import "./IGovernment.sol";
+import "../commoncontracts/IOffice.sol";
+import "../commoncontracts/ISource.sol";
+import "../TOKEN/IERC20.sol"; 
 
 
 /*
@@ -19,21 +19,21 @@ govenment contract deploy sequence.
 5. deploy government smart contract with company, school, person source contract, and ERC20 also.
 
 */
-contract Government_Smart_Contract //this contract address will publish to all
+contract Government is IGovernment 
 {
-    Interface_Office_Smart_Contract officeContract;
-    Interface_Source_Smart_Contract companyContracts;
-    Interface_Source_Smart_Contract schoolContracts;
-    Interface_Source_Smart_Contract personContracts;
+    IOffice officeContract;
+    ISource companyContracts;
+    ISource schoolContracts;
+    ISource personContracts;
     IERC20 public eToken;
     
 
     constructor(address _off, address _com, address _sch, address _per, address _token)
     {
-        officeContract = Interface_Office_Smart_Contract(_off);
-        companyContracts = Interface_Source_Smart_Contract(_com);
-        schoolContracts = Interface_Source_Smart_Contract(_sch);
-        personContracts = Interface_Source_Smart_Contract(_per);
+        officeContract = IOffice(_off);
+        companyContracts = ISource(_com);
+        schoolContracts = ISource(_sch);
+        personContracts = ISource(_per);
         eToken = IERC20(_token);
     }
 

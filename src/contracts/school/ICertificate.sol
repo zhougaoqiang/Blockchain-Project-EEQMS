@@ -1,9 +1,9 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../commoncontracts/schooldefinition.sol";
+import "../commoncontracts/SchoolDefinition.sol";
 
-interface Interface_Certificate_Smart_Contract
+interface ICertificate
 {
     function transferOwnership(address _stud) external; 
     function setCertificate(Certificate_Info memory _cert) external;
