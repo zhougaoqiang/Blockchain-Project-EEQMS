@@ -7,32 +7,46 @@ import "./ISchoolSource.sol";
 
 contract SchoolSource is ISchoolSource
 {
+    struct Signatures
+    {
+        uint256 certSig;
+        uint256 transSig;
+    }
+
     mapping(uint256 => Transcript_Info) private studsTrans;
     uint256[] private curStudArray;
-    mapping(uint256 => address) private graduatedStudentInfo; //studentId => studentContractAddress
+    mapping(uint256 => Signatures) private graduatedStudentInfo; //studentId => signature
     IOffice officeContract;
 
     constructor(address officeContractAddress)
     {
         officeContract = IOffice(officeContractAddress);
     }
-    modifier onlyAdmin()
+    modifier onlyAdmin(address _verify)
     {
-        require(officeContract.isOwnerOrOfficer(msg.sender));
+        require(officeContract.isOwnerOrOfficer(_verify), "only school admin is allowed");
         _;
     }
 
-    function addGraduatedStudent(uint256 id, address _add) external onlyAdmin
+    function addGraduatedStudent(address _verify, uint256 id, uint256 _certSig, uint256 _TranSig) external onlyAdmin(_verify)
     {
-        graduatedStudentInfo[id] = _add;
+        Signatures memory sigs;
+        sigs.certSig = _certSig;
+        sigs.transSig = _TranSig;
+        graduatedStudentInfo[id] = sigs;
     }
 
-    function getGraduatedStudent(uint256 id) external view onlyAdmin returns (address) 
+    function getGraduatedStudentCertificateSignature(uint256 id) external view returns (uint256) 
     {
-        return graduatedStudentInfo[id];
+        return graduatedStudentInfo[id].certSig;
     }
 
-    function newStudent(Student_Info memory _stdInfo, School_Info memory _schoolInfo) external onlyAdmin
+    function getGraduatedStudentTranscriptSignature(uint256 id) external view returns (uint256) 
+    {
+        return graduatedStudentInfo[id].transSig;
+    }
+
+    function newStudent(address _verify, Student_Info memory _stdInfo, School_Info memory _schoolInfo) external onlyAdmin(_verify)
     {
         uint256 studentId = _stdInfo.id; //school must create a unqiure id for student first;
         Certificate_Info memory cert;
@@ -45,27 +59,27 @@ contract SchoolSource is ISchoolSource
         studsTrans[studentId].certificate = cert;
     }
 
-    function addCurrentStudentCourseInfo(uint256 _studId, Course_Info memory _courseList) external onlyAdmin
+    function addCurrentStudentCourseInfo(address _verify,uint256 _studId, Course_Info memory _courseList) external onlyAdmin(_verify)
     {
         studsTrans[_studId].courseList.push(_courseList);
     }
 
-    function getCurrentStudentCertificate(uint256 _stuId) external view onlyAdmin returns (Certificate_Info memory)
+    function getCurrentStudentCertificate(address _verify,uint256 _stuId) external view onlyAdmin(_verify) returns (Certificate_Info memory)
     {
         return studsTrans[_stuId].certificate;
     }
 
-    function getCurrentStudentTranscript(uint256 _stuId) external view onlyAdmin returns (Transcript_Info memory)
+    function getCurrentStudentTranscript(address _verify, uint256 _stuId) external view onlyAdmin(_verify) returns (Transcript_Info memory)
     {
         return studsTrans[_stuId];
     }
     
-    function isCurrentStudent(uint256 _studId) external view onlyAdmin returns (bool)
+    function isCurrentStudent(address _verify,uint256 _studId) external view onlyAdmin(_verify) returns (bool)
     {
-        return isCurStudent(_studId);
+        return isCurStudent(_verify, _studId);
     }
 
-    function isCurStudent(uint256 _stuId) private view onlyAdmin returns (bool)
+    function isCurStudent(address _verify,uint256 _stuId) private view onlyAdmin(_verify) returns (bool)
     {
         for (uint i = 0; i < curStudArray.length; ++i)
         {
@@ -77,18 +91,18 @@ contract SchoolSource is ISchoolSource
         return false;
     }
 
-    function updateStudentCertificate(Certificate_Info memory _cert) onlyAdmin external
+    function updateStudentCertificate(address _verify, Certificate_Info memory _cert) onlyAdmin(_verify) external
     {
         uint256 stuId = _cert.studentDetails.id;
-        require (isCurStudent(stuId), "No current student, should admission first");
+        require (isCurStudent(_verify, stuId), "No current student, should admission first");
 
         studsTrans[stuId].certificate = _cert;
     }
 
-    function setStudentTranscript(Transcript_Info memory _trans) onlyAdmin external
+    function setStudentTranscript(address _verify, Transcript_Info memory _trans) onlyAdmin(_verify) external
     {
         uint256 stuId = _trans.certificate.studentDetails.id;
-        require(isCurStudent(stuId), "No transcripts or current student, invalid operation");
+        require(isCurStudent(_verify, stuId), "No transcripts or current student, invalid operation");
 
         studsTrans[stuId].certificate = _trans.certificate;
         studsTrans[stuId].signature = _trans.signature;
@@ -98,7 +112,7 @@ contract SchoolSource is ISchoolSource
         }
     }
 
-    function checkGraduateRequirement(uint256 _studId) external onlyAdmin view returns (bool)
+    function checkGraduateRequirement(address _verify, uint256 _studId) external onlyAdmin(_verify) view returns (bool)
     {
         if (studsTrans[_studId].certificate.status != EStudyStatus.InProgress)
             return true;
@@ -116,7 +130,7 @@ contract SchoolSource is ISchoolSource
         return type(uint).max; //return a invalid value if not found;
     }
 
-    function removeStudent(uint256 _studId) external onlyAdmin
+    function removeStudent(address _verify, uint256 _studId) external onlyAdmin(_verify)
     {
         uint studIndex = findStudentIndex(_studId);
         require(studIndex != type(uint).max, "student not in list");

@@ -82,3 +82,4 @@ struct Transcript_Info
     Course_Info[] courseList;
     uint256 signature; //hash value
 }
+

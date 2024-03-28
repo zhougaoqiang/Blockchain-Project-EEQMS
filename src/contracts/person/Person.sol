@@ -38,46 +38,52 @@ contract Person is IPerson
         certificateContracts = ISource(_source);
     }
 
-    modifier onlyOwner()
+    modifier onlyOwner(address _add)
     {
-        require(officeContract.isOwner(), "only owner allowed");
+        require(officeContract.isOwner(_add), "only owner allowed");
         _;
     }
 
-    modifier onlyOwnerOrCompanyAdmin()
+    modifier onlyOwnerOrCompanyAdmin(address _add)
     {
-        require(officeContract.isOwnerOrOfficer(msg.sender), "only Owner Or Company Admin");
+        require(officeContract.isOwnerOrOfficer(_add), "only Owner Or Company Admin");
         _;
     }
 
-    function addCertiticateContract(address _add) public onlyOwner
+    function acceptCertificateContract(address _add) public onlyOwner(msg.sender)
     {
-        certificateContracts.addAddress(_add);
+        ICertificate cert = ICertificate(_add);
+        cert.acceptedCertifcate(msg.sender, address(officeContract));
+    }
+    // before add certificate to self. please call acceptCertificateContract first. 
+    function addCertificateContract(address _add) public onlyOwner(msg.sender)
+    {
+        certificateContracts.addAddress(msg.sender, _add); //add to contractsList
         ICertificate certContract = ICertificate(_add);
-        certificates.push(certContract.getCertificate());
+        certificates.push(certContract.getCertificate(msg.sender));
     }
 
-    function setPersonalInfo(Personal_Info memory _info) public onlyOwner
+    function setPersonalInfo(Personal_Info memory _info) public onlyOwner(msg.sender)
     {
         personalInfo = _info;
     }
 
-    function getPersonalInfo() external view onlyOwnerOrCompanyAdmin returns (Personal_Info memory) 
+    function getPersonalInfo(address _verify) external view onlyOwnerOrCompanyAdmin(_verify) returns (Personal_Info memory) 
     {
         return personalInfo;
     }
 
-    function getAllCertificates() external view onlyOwnerOrCompanyAdmin returns (Certificate_Info[] memory)
+    function getAllCertificates(address _verify) external view onlyOwnerOrCompanyAdmin(_verify) returns (Certificate_Info[] memory)
     {
         return certificates;
     }
 
-    function getCertificatesCounts() external view onlyOwnerOrCompanyAdmin returns (uint)
+    function getCertificatesCounts(address _verify) external view onlyOwnerOrCompanyAdmin(_verify) returns (uint)
     {
         return certificates.length;
     }
 
-    function getCertificateByIndex(uint _index) external view onlyOwnerOrCompanyAdmin returns (Certificate_Info memory)
+    function getCertificateByIndex(address _verify, uint _index) external view onlyOwnerOrCompanyAdmin(_verify) returns (Certificate_Info memory)
     {
         require(_index < certificates.length, "This certificate is not exist");
         return certificates[_index];
@@ -93,19 +99,20 @@ contract Person is IPerson
         return type(uint).max; //return a invalid value if not found;
     }
 
-    function getTranscript(Certificate_Info memory _cert) external view onlyOwnerOrCompanyAdmin returns (Transcript_Info memory)
+    // the _verify must be the student itself,
+    function getTranscript(address _verify, Certificate_Info memory _cert) external view onlyOwnerOrCompanyAdmin(_verify) returns (Transcript_Info memory)
     {
         uint index = getCertificateAddressIndex(_cert.signature);
         require(index != type(uint).max, "not find this certificate");
 
         Transcript_Info memory trans;
         trans.certificate = certificates[index];
-        ICertificate certContract = ICertificate(certificateContracts.getAddress(index));
-        trans.signature = certContract.getTranscript().signature;
-        trans.courseList = new Course_Info[](certContract.getTranscript().courseList.length); 
-        for(uint i = 0; i < certContract.getTranscript().courseList.length; ++i)
+        ICertificate certContract = ICertificate(certificateContracts.getAddress(_verify, index));
+        trans.signature = certContract.getTranscript(_verify).signature;
+        trans.courseList = new Course_Info[](certContract.getTranscript(_verify).courseList.length); 
+        for(uint i = 0; i < certContract.getTranscript(_verify).courseList.length; ++i)
         {
-            trans.courseList[i] = certContract.getTranscript().courseList[i];
+            trans.courseList[i] = certContract.getTranscript(_verify).courseList[i];
         }
         return trans;
     }

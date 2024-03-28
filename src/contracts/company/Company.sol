@@ -42,19 +42,19 @@ contract Company
         tokenContract = IERC20(_token);
     }
 
-    modifier isOwner()
+    modifier isOwner(address _add)
     {
-        require(officeContract.isOwner(), "only owner allowed");
+        require(officeContract.isOwner(_add), "only owner allowed");
         _;
     }
 
-    modifier onlyOwnerOrCompanyAdmin()
+    modifier onlyOwnerOrCompanyAdmin(address _add)
     {
-        require(officeContract.isOwnerOrOfficer(msg.sender), "only Owner Or Company Admin");
+        require(officeContract.isOwnerOrOfficer(_add), "only Owner Or Company Admin");
         _;
     }
 
-    function setCompanyInfo(Company_Info memory _info) external isOwner
+    function setCompanyInfo(Company_Info memory _info) external isOwner(msg.sender)
     {
         companyInfo = _info;
     }
@@ -64,10 +64,10 @@ contract Company
         return companyInfo;
     }
 
-    function addStaff(Personal_Info memory _personalInfo, address staffContractAdd) external onlyOwnerOrCompanyAdmin
+    function addStaff(Personal_Info memory _personalInfo, address staffContractAdd) external onlyOwnerOrCompanyAdmin(msg.sender)
     {
         staffInfoList.push(_personalInfo);
-        staffContractSource.addAddress(staffContractAdd);
+        staffContractSource.addAddress(msg.sender, staffContractAdd);
     }
 
     function findStaffIndex(uint256 id) private view returns (uint)
@@ -81,25 +81,25 @@ contract Company
         return type(uint).max;
     }
 
-    function removeStaff(uint256 _id) public onlyOwnerOrCompanyAdmin
+    function removeStaff(uint256 _id) public onlyOwnerOrCompanyAdmin(msg.sender)
     {
         uint index = findStaffIndex(_id);
         require(index != type(uint).max, "not find thie staff");
 
         staffInfoList[index] = staffInfoList[staffInfoList.length - 1];
         staffInfoList.pop();
-        staffContractSource.removeAddressByIndex(index);
+        staffContractSource.removeAddressByIndex(msg.sender, index);
     }
 
     function getStaffCertifcates(uint256 _id) public view returns (Certificate_Info[] memory)
     {
         uint index = findStaffIndex(_id);
         require(index != type(uint).max, "not find thie staff");
-        IPerson personContract = IPerson(staffContractSource.getAddress(index));
-        uint noOfCerts = personContract.getCertificatesCounts();
+        IPerson personContract = IPerson(staffContractSource.getAddress(msg.sender, index));
+        uint noOfCerts = personContract.getCertificatesCounts(msg.sender);
         require (noOfCerts > 0, "No cert exist");
 
-        return personContract.getAllCertificates();
+        return personContract.getAllCertificates(msg.sender);
     }
 
     function verifyStaffCertificate(uint256 _id, bool verifyTransAlso, Certificate_Info memory _cert) public returns (bool)
@@ -125,8 +125,8 @@ contract Company
         {
             // 在UI中或通过直接与代币合约交互之前完成
              // tokenContract.approve(schoolContractAddress, amount);
-             IPerson personContract = IPerson(staffContractSource.getAddress(index));
-             isOk = schoolContract.verifyGraduateStudentTranscript(personContract.getTranscript(_cert));
+             IPerson personContract = IPerson(staffContractSource.getAddress(msg.sender, index));
+             isOk = schoolContract.verifyGraduateStudentTranscript(personContract.getTranscript(msg.sender, _cert));
         }
 
         if (!isOk) 
@@ -140,13 +140,13 @@ contract Company
         uint index = findStaffIndex(_id);
         require(index != type(uint).max, "not find thie staff");
 
-        IPerson personContract = IPerson(staffContractSource.getAddress(index));
-        uint noOfCerts = personContract.getCertificatesCounts();
+        IPerson personContract = IPerson(staffContractSource.getAddress(msg.sender, index));
+        uint noOfCerts = personContract.getCertificatesCounts(msg.sender);
         require (noOfCerts > 0, "No cert exist");
 
         for (uint i = 0; i < noOfCerts; ++i)
         {
-            Certificate_Info memory cert = personContract.getCertificateByIndex(i);
+            Certificate_Info memory cert = personContract.getCertificateByIndex(msg.sender, i);
             bool isOk = verifyStaffCertificate(_id, verifyTransAlso, cert);
             if (!isOk)
                 return false;

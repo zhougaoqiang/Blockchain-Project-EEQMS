@@ -4,6 +4,7 @@ import "./IGovernment.sol";
 import "../commoncontracts/IOffice.sol";
 import "../commoncontracts/ISource.sol";
 import "../TOKEN/IERC20.sol"; 
+import "hardhat/console.sol";
 
 
 /*
@@ -37,9 +38,10 @@ contract Government is IGovernment
         eToken = IERC20(_token);
     }
 
-    modifier onlyAdmin()
+    modifier onlyAdmin(address _add)
     {
-        require(officeContract.isOwnerOrOfficer(msg.sender), "only admin is allowed");
+        console.log("onlyAdmin get Address => ", _add);
+        require(officeContract.isOwnerOrOfficer(_add), "only admin is allowed");
         _;
     }
 
@@ -58,23 +60,23 @@ contract Government is IGovernment
         return personContracts.hasAddress(_add);
     }
 
-    function registerSchool(address _add) public onlyAdmin
+    function registerSchool(address _verify, address _add) public onlyAdmin(_verify)
     {
         require(!schoolContracts.hasAddress(_add), "registered already");
-        schoolContracts.addAddress(_add);
+        schoolContracts.addAddress(msg.sender, _add);
     }
 
-    function registerCompany(address _add) public onlyAdmin
+    function registerCompany(address _verify, address _add) public onlyAdmin(_verify)
     {
+        console.log("registerCompany get Address => ", msg.sender);
         require(!companyContracts.hasAddress(_add), "registered already");
-
-        companyContracts.addAddress(_add);
-        eToken.transfer(_add, 100 * 10**18);
+        companyContracts.addAddress(msg.sender, _add);
+        // eToken.transfer(_add, 100 * 10**18);
     }
 
-    function registerPerson(address _add) public onlyAdmin
+    function registerPerson(address _verify, address _add) public onlyAdmin(_verify)
     {
         require(!personContracts.hasAddress(_add), "registered already");
-        personContracts.addAddress(_add);
+        personContracts.addAddress(msg.sender, _add);
     }
 }
