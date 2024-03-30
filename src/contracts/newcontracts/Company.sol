@@ -16,11 +16,16 @@ contract Company
     Company_Info public companyInfo;
     address governmentAddress;
 
-    constructor(address _gov, Company_Info memory info)
+    constructor(address _gov, string memory _uenNo, 
+        string memory _name, string memory _profile, string memory _add)
     {
         governmentAddress = _gov;
         owner = msg.sender;
-        companyInfo = info;
+        companyInfo.uenNo = _uenNo;
+        companyInfo.name = _name;
+        companyInfo.profile = _profile;
+        companyInfo.add = _add;
+        companyInfo.id = uint256(keccak256(abi.encodePacked(_uenNo, _name, _profile, _add)));
     }
 
     modifier onlyOwner()

@@ -11,7 +11,6 @@ contract Person is IPerson
     Certificate_Info[] certificates;
     address owner;
     bool isPublic;
-    // mapping(address => bool) private adminList;
 
     constructor()
     {

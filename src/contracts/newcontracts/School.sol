@@ -21,10 +21,14 @@ contract School is ISchool
     StudIdNamePair[] studentArray;
     mapping(uint256 => uint256) private certSignatures; //signature generate after graduate
 
-    constructor(School_Info memory _schInfo)
+    constructor(string memory _schoolId, string memory _name, string memory _phyAdd, string memory _email)
     {
         owner = msg.sender;
-        schoolInfo = _schInfo;
+        schoolInfo.schoolContractAddress = address(this);
+        schoolInfo.id = _schoolId;
+        schoolInfo.name = _name;
+        schoolInfo.add = _phyAdd;
+        schoolInfo.email = _email;
     }
 
     modifier onlyOwner()
