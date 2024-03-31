@@ -1,0 +1,475 @@
+{
+  "contractName": "ISchool",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "schoolContractAddress",
+                  "type": "address"
+                },
+                {
+                  "internalType": "string",
+                  "name": "id",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "add",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "email",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct School_Info",
+              "name": "schoolInfo",
+              "type": "tuple"
+            },
+            {
+              "internalType": "enum ECertificateCategory",
+              "name": "category",
+              "type": "uint8"
+            },
+            {
+              "internalType": "enum EHonor",
+              "name": "honor",
+              "type": "uint8"
+            },
+            {
+              "internalType": "enum EStudyStatus",
+              "name": "status",
+              "type": "uint8"
+            },
+            {
+              "internalType": "string",
+              "name": "major",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "certificateId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "admissionTimestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "graduationTimestamp",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "id",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "nationality",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "nric",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "passport",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "add",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct Student_Info",
+              "name": "studentDetails",
+              "type": "tuple"
+            },
+            {
+              "internalType": "uint256",
+              "name": "signature",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Certificate_Info",
+          "name": "_cert",
+          "type": "tuple"
+        }
+      ],
+      "name": "verifyGraduatedStudentCertificate",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_studId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_signature",
+          "type": "uint256"
+        }
+      ],
+      "name": "directVerifyGraduatedStudentCertificate",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_studId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_signature\",\"type\":\"uint256\"}],\"name\":\"directVerifyGraduatedStudentCertificate\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"schoolContractAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"add\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"}],\"internalType\":\"struct School_Info\",\"name\":\"schoolInfo\",\"type\":\"tuple\"},{\"internalType\":\"enum ECertificateCategory\",\"name\":\"category\",\"type\":\"uint8\"},{\"internalType\":\"enum EHonor\",\"name\":\"honor\",\"type\":\"uint8\"},{\"internalType\":\"enum EStudyStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"major\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"certificateId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"admissionTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"graduationTimestamp\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"nationality\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"nric\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"passport\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"add\",\"type\":\"string\"}],\"internalType\":\"struct Student_Info\",\"name\":\"studentDetails\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"signature\",\"type\":\"uint256\"}],\"internalType\":\"struct Certificate_Info\",\"name\":\"_cert\",\"type\":\"tuple\"}],\"name\":\"verifyGraduatedStudentCertificate\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/ISchool.sol\":\"ISchool\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Definition.sol\":{\"keccak256\":\"0x5ddce4b006379fea331b434f4f87171b961d2aac92852a87ba11bdd2fdd3df4f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f7ea506949b4323d141d38fb0d365c018de493f34e08f58212a6345b660177c4\",\"dweb:/ipfs/QmWGkv9a7JduSjY82A86ShnGm77htEKbR8pqekwjracfek\"]},\"project:/contracts/ISchool.sol\":{\"keccak256\":\"0x0242f04f984391cca63ec9684809d3048e1a3ed2aa5420172548d13e11097224\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://434f66f71cb9ea2408c57c0c8aa61ee9196dc6770f090f2dcafcd330a22664f0\",\"dweb:/ipfs/QmfEt2jteyuUHD2rQdfz2ofVRnA27fTC9QSSY5yKsRWCVn\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "//SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport \"./Definition.sol\";\n\ninterface ISchool\n{\n    // function getVerifyFee(address _verify) external view returns (uint);\n    function verifyGraduatedStudentCertificate(Certificate_Info memory _cert) external returns (bool);\n    function directVerifyGraduatedStudentCertificate(uint256 _studId, uint256 _signature) external view returns (bool);\n    // function verifyGraduateStudentTranscript(Transcript_Info memory  _trans) external returns (bool);\n}\n",
+  "sourcePath": "/Users/zhougaoqiang/Documents/GitHub/SmartCertify/web-app/blockchain/contracts/ISchool.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/ISchool.sol",
+    "exportedSymbols": {
+      "Certificate_Info": [
+        704
+      ],
+      "Company_Info": [
+        619
+      ],
+      "ECertificateCategory": [
+        642
+      ],
+      "EHonor": [
+        649
+      ],
+      "EStudyStatus": [
+        652
+      ],
+      "ISchool": [
+        810
+      ],
+      "Personal_Info": [
+        632
+      ],
+      "School_Info": [
+        663
+      ],
+      "Student_Info": [
+        676
+      ]
+    },
+    "id": 811,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 791,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "31:23:7"
+      },
+      {
+        "absolutePath": "project:/contracts/Definition.sol",
+        "file": "./Definition.sol",
+        "id": 792,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 811,
+        "sourceUnit": 705,
+        "src": "56:26:7",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ISchool",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 810,
+        "linearizedBaseContracts": [
+          810
+        ],
+        "name": "ISchool",
+        "nameLocation": "94:7:7",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "79ad7957",
+            "id": 800,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "verifyGraduatedStudentCertificate",
+            "nameLocation": "193:33:7",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 796,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 795,
+                  "mutability": "mutable",
+                  "name": "_cert",
+                  "nameLocation": "251:5:7",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 800,
+                  "src": "227:29:7",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Certificate_Info_$704_memory_ptr",
+                    "typeString": "struct Certificate_Info"
+                  },
+                  "typeName": {
+                    "id": 794,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 793,
+                      "name": "Certificate_Info",
+                      "nameLocations": [
+                        "227:16:7"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 704,
+                      "src": "227:16:7"
+                    },
+                    "referencedDeclaration": 704,
+                    "src": "227:16:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Certificate_Info_$704_storage_ptr",
+                      "typeString": "struct Certificate_Info"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "226:31:7"
+            },
+            "returnParameters": {
+              "id": 799,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 798,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 800,
+                  "src": "276:4:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 797,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "276:4:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "275:6:7"
+            },
+            "scope": 810,
+            "src": "184:98:7",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "7cab7024",
+            "id": 809,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "directVerifyGraduatedStudentCertificate",
+            "nameLocation": "296:39:7",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 805,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 802,
+                  "mutability": "mutable",
+                  "name": "_studId",
+                  "nameLocation": "344:7:7",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 809,
+                  "src": "336:15:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 801,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "336:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 804,
+                  "mutability": "mutable",
+                  "name": "_signature",
+                  "nameLocation": "361:10:7",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 809,
+                  "src": "353:18:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 803,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "353:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "335:37:7"
+            },
+            "returnParameters": {
+              "id": 808,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 807,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 809,
+                  "src": "396:4:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 806,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "396:4:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "395:6:7"
+            },
+            "scope": 810,
+            "src": "287:115:7",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 811,
+        "src": "84:425:7",
+        "usedErrors": []
+      }
+    ],
+    "src": "31:479:7"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2024-03-31T05:43:06.600Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -1,0 +1,1398 @@
+{
+  "contractName": "CertificateHashLib",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/CertificateHashLib.sol\":\"CertificateHashLib\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/CertificateHashLib.sol\":{\"keccak256\":\"0x7870261b9497dffb666e327b20ca88f91d6d5e267f9cd4c65f0e9504daf95a97\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://320c52804d73097a4cb2a1047f1e284de605868bfc47eb61b206ca7828bd5140\",\"dweb:/ipfs/QmekYe7x6kApF1xkgbopeYeWHo1HJNgRTeRJQccy2qDYXS\"]},\"project:/contracts/Definition.sol\":{\"keccak256\":\"0x5ddce4b006379fea331b434f4f87171b961d2aac92852a87ba11bdd2fdd3df4f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f7ea506949b4323d141d38fb0d365c018de493f34e08f58212a6345b660177c4\",\"dweb:/ipfs/QmWGkv9a7JduSjY82A86ShnGm77htEKbR8pqekwjracfek\"]}},\"version\":1}",
+  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220ca5e4ddb142964a04ce0d2f346f2f875fedeb6189e5b8ab2f0730d36fbc1b17764736f6c63430008130033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220ca5e4ddb142964a04ce0d2f346f2f875fedeb6189e5b8ab2f0730d36fbc1b17764736f6c63430008130033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "84:735:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "84:735:1:-:0;;;;;;;;",
+  "source": "//SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport \"./Definition.sol\";\n\nlibrary CertificateHashLib\n{\n    function hashCertificate(Certificate_Info memory _cert) internal pure returns (uint256)\n    {\n        School_Info memory sch = _cert.schoolInfo;\n        bytes32 schHash = keccak256(abi.encodePacked(sch.schoolContractAddress, sch.id, sch.add, sch.email,sch.name));\n        Student_Info memory stud = _cert.studentDetails;\n        bytes32 studHash = keccak256(abi.encodePacked(stud.id, stud.nationality, stud.nric, stud.passport, stud.name, stud.add));\n        bytes32 certHash = keccak256(abi.encodePacked(schHash, studHash, _cert.category, _cert.honor, _cert.status, _cert.major, _cert.description, \n            _cert.certificateId, _cert.admissionTimestamp));\n        return uint256(certHash);\n    }\n}",
+  "sourcePath": "/Users/zhougaoqiang/Documents/GitHub/SmartCertify/web-app/blockchain/contracts/CertificateHashLib.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/CertificateHashLib.sol",
+    "exportedSymbols": {
+      "CertificateHashLib": [
+        191
+      ],
+      "Certificate_Info": [
+        704
+      ],
+      "Company_Info": [
+        619
+      ],
+      "ECertificateCategory": [
+        642
+      ],
+      "EHonor": [
+        649
+      ],
+      "EStudyStatus": [
+        652
+      ],
+      "Personal_Info": [
+        632
+      ],
+      "School_Info": [
+        663
+      ],
+      "Student_Info": [
+        676
+      ]
+    },
+    "id": 192,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 101,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "31:23:1"
+      },
+      {
+        "absolutePath": "project:/contracts/Definition.sol",
+        "file": "./Definition.sol",
+        "id": 102,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 192,
+        "sourceUnit": 705,
+        "src": "56:26:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "CertificateHashLib",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 191,
+        "linearizedBaseContracts": [
+          191
+        ],
+        "name": "CertificateHashLib",
+        "nameLocation": "92:18:1",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 189,
+              "nodeType": "Block",
+              "src": "209:608:1",
+              "statements": [
+                {
+                  "assignments": [
+                    112
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 112,
+                      "mutability": "mutable",
+                      "name": "sch",
+                      "nameLocation": "238:3:1",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 189,
+                      "src": "219:22:1",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_School_Info_$663_memory_ptr",
+                        "typeString": "struct School_Info"
+                      },
+                      "typeName": {
+                        "id": 111,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 110,
+                          "name": "School_Info",
+                          "nameLocations": [
+                            "219:11:1"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 663,
+                          "src": "219:11:1"
+                        },
+                        "referencedDeclaration": 663,
+                        "src": "219:11:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_School_Info_$663_storage_ptr",
+                          "typeString": "struct School_Info"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 115,
+                  "initialValue": {
+                    "expression": {
+                      "id": 113,
+                      "name": "_cert",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 105,
+                      "src": "244:5:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Certificate_Info_$704_memory_ptr",
+                        "typeString": "struct Certificate_Info memory"
+                      }
+                    },
+                    "id": 114,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberLocation": "250:10:1",
+                    "memberName": "schoolInfo",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 679,
+                    "src": "244:16:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_School_Info_$663_memory_ptr",
+                      "typeString": "struct School_Info memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "219:41:1"
+                },
+                {
+                  "assignments": [
+                    117
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 117,
+                      "mutability": "mutable",
+                      "name": "schHash",
+                      "nameLocation": "278:7:1",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 189,
+                      "src": "270:15:1",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 116,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "270:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 133,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "expression": {
+                              "id": 121,
+                              "name": "sch",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 112,
+                              "src": "315:3:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_School_Info_$663_memory_ptr",
+                                "typeString": "struct School_Info memory"
+                              }
+                            },
+                            "id": 122,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "319:21:1",
+                            "memberName": "schoolContractAddress",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 654,
+                            "src": "315:25:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 123,
+                              "name": "sch",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 112,
+                              "src": "342:3:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_School_Info_$663_memory_ptr",
+                                "typeString": "struct School_Info memory"
+                              }
+                            },
+                            "id": 124,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "346:2:1",
+                            "memberName": "id",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 656,
+                            "src": "342:6:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 125,
+                              "name": "sch",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 112,
+                              "src": "350:3:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_School_Info_$663_memory_ptr",
+                                "typeString": "struct School_Info memory"
+                              }
+                            },
+                            "id": 126,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "354:3:1",
+                            "memberName": "add",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 660,
+                            "src": "350:7:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 127,
+                              "name": "sch",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 112,
+                              "src": "359:3:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_School_Info_$663_memory_ptr",
+                                "typeString": "struct School_Info memory"
+                              }
+                            },
+                            "id": 128,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "363:5:1",
+                            "memberName": "email",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 662,
+                            "src": "359:9:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 129,
+                              "name": "sch",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 112,
+                              "src": "369:3:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_School_Info_$663_memory_ptr",
+                                "typeString": "struct School_Info memory"
+                              }
+                            },
+                            "id": 130,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "373:4:1",
+                            "memberName": "name",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 658,
+                            "src": "369:8:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            },
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            },
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            },
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            },
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          ],
+                          "expression": {
+                            "id": 119,
+                            "name": "abi",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967295,
+                            "src": "298:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_abi",
+                              "typeString": "abi"
+                            }
+                          },
+                          "id": 120,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "302:12:1",
+                          "memberName": "encodePacked",
+                          "nodeType": "MemberAccess",
+                          "src": "298:16:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                            "typeString": "function () pure returns (bytes memory)"
+                          }
+                        },
+                        "id": 131,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "298:80:1",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "id": 118,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967288,
+                      "src": "288:9:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (bytes memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 132,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "288:91:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "270:109:1"
+                },
+                {
+                  "assignments": [
+                    136
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 136,
+                      "mutability": "mutable",
+                      "name": "stud",
+                      "nameLocation": "409:4:1",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 189,
+                      "src": "389:24:1",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Student_Info_$676_memory_ptr",
+                        "typeString": "struct Student_Info"
+                      },
+                      "typeName": {
+                        "id": 135,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 134,
+                          "name": "Student_Info",
+                          "nameLocations": [
+                            "389:12:1"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 676,
+                          "src": "389:12:1"
+                        },
+                        "referencedDeclaration": 676,
+                        "src": "389:12:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Student_Info_$676_storage_ptr",
+                          "typeString": "struct Student_Info"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 139,
+                  "initialValue": {
+                    "expression": {
+                      "id": 137,
+                      "name": "_cert",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 105,
+                      "src": "416:5:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Certificate_Info_$704_memory_ptr",
+                        "typeString": "struct Certificate_Info memory"
+                      }
+                    },
+                    "id": 138,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberLocation": "422:14:1",
+                    "memberName": "studentDetails",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 701,
+                    "src": "416:20:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Student_Info_$676_memory_ptr",
+                      "typeString": "struct Student_Info memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "389:47:1"
+                },
+                {
+                  "assignments": [
+                    141
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 141,
+                      "mutability": "mutable",
+                      "name": "studHash",
+                      "nameLocation": "454:8:1",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 189,
+                      "src": "446:16:1",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 140,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "446:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 159,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "expression": {
+                              "id": 145,
+                              "name": "stud",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 136,
+                              "src": "492:4:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Student_Info_$676_memory_ptr",
+                                "typeString": "struct Student_Info memory"
+                              }
+                            },
+                            "id": 146,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "497:2:1",
+                            "memberName": "id",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 665,
+                            "src": "492:7:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 147,
+                              "name": "stud",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 136,
+                              "src": "501:4:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Student_Info_$676_memory_ptr",
+                                "typeString": "struct Student_Info memory"
+                              }
+                            },
+                            "id": 148,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "506:11:1",
+                            "memberName": "nationality",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 667,
+                            "src": "501:16:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 149,
+                              "name": "stud",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 136,
+                              "src": "519:4:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Student_Info_$676_memory_ptr",
+                                "typeString": "struct Student_Info memory"
+                              }
+                            },
+                            "id": 150,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "524:4:1",
+                            "memberName": "nric",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 669,
+                            "src": "519:9:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 151,
+                              "name": "stud",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 136,
+                              "src": "530:4:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Student_Info_$676_memory_ptr",
+                                "typeString": "struct Student_Info memory"
+                              }
+                            },
+                            "id": 152,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "535:8:1",
+                            "memberName": "passport",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 671,
+                            "src": "530:13:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 153,
+                              "name": "stud",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 136,
+                              "src": "545:4:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Student_Info_$676_memory_ptr",
+                                "typeString": "struct Student_Info memory"
+                              }
+                            },
+                            "id": 154,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "550:4:1",
+                            "memberName": "name",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 673,
+                            "src": "545:9:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 155,
+                              "name": "stud",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 136,
+                              "src": "556:4:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Student_Info_$676_memory_ptr",
+                                "typeString": "struct Student_Info memory"
+                              }
+                            },
+                            "id": 156,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "561:3:1",
+                            "memberName": "add",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 675,
+                            "src": "556:8:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            },
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            },
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            },
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            },
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            },
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          ],
+                          "expression": {
+                            "id": 143,
+                            "name": "abi",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967295,
+                            "src": "475:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_abi",
+                              "typeString": "abi"
+                            }
+                          },
+                          "id": 144,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "479:12:1",
+                          "memberName": "encodePacked",
+                          "nodeType": "MemberAccess",
+                          "src": "475:16:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                            "typeString": "function () pure returns (bytes memory)"
+                          }
+                        },
+                        "id": 157,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "475:90:1",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "id": 142,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967288,
+                      "src": "465:9:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (bytes memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 158,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "465:101:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "446:120:1"
+                },
+                {
+                  "assignments": [
+                    161
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 161,
+                      "mutability": "mutable",
+                      "name": "certHash",
+                      "nameLocation": "584:8:1",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 189,
+                      "src": "576:16:1",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 160,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "576:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 183,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "id": 165,
+                            "name": "schHash",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 117,
+                            "src": "622:7:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes32",
+                              "typeString": "bytes32"
+                            }
+                          },
+                          {
+                            "id": 166,
+                            "name": "studHash",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 141,
+                            "src": "631:8:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes32",
+                              "typeString": "bytes32"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 167,
+                              "name": "_cert",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 105,
+                              "src": "641:5:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Certificate_Info_$704_memory_ptr",
+                                "typeString": "struct Certificate_Info memory"
+                              }
+                            },
+                            "id": 168,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "647:8:1",
+                            "memberName": "category",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 682,
+                            "src": "641:14:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_ECertificateCategory_$642",
+                              "typeString": "enum ECertificateCategory"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 169,
+                              "name": "_cert",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 105,
+                              "src": "657:5:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Certificate_Info_$704_memory_ptr",
+                                "typeString": "struct Certificate_Info memory"
+                              }
+                            },
+                            "id": 170,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "663:5:1",
+                            "memberName": "honor",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 685,
+                            "src": "657:11:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_EHonor_$649",
+                              "typeString": "enum EHonor"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 171,
+                              "name": "_cert",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 105,
+                              "src": "670:5:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Certificate_Info_$704_memory_ptr",
+                                "typeString": "struct Certificate_Info memory"
+                              }
+                            },
+                            "id": 172,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "676:6:1",
+                            "memberName": "status",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 688,
+                            "src": "670:12:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_EStudyStatus_$652",
+                              "typeString": "enum EStudyStatus"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 173,
+                              "name": "_cert",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 105,
+                              "src": "684:5:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Certificate_Info_$704_memory_ptr",
+                                "typeString": "struct Certificate_Info memory"
+                              }
+                            },
+                            "id": 174,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "690:5:1",
+                            "memberName": "major",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 690,
+                            "src": "684:11:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 175,
+                              "name": "_cert",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 105,
+                              "src": "697:5:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Certificate_Info_$704_memory_ptr",
+                                "typeString": "struct Certificate_Info memory"
+                              }
+                            },
+                            "id": 176,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "703:11:1",
+                            "memberName": "description",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 692,
+                            "src": "697:17:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 177,
+                              "name": "_cert",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 105,
+                              "src": "729:5:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Certificate_Info_$704_memory_ptr",
+                                "typeString": "struct Certificate_Info memory"
+                              }
+                            },
+                            "id": 178,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "735:13:1",
+                            "memberName": "certificateId",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 694,
+                            "src": "729:19:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          {
+                            "expression": {
+                              "id": 179,
+                              "name": "_cert",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 105,
+                              "src": "750:5:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Certificate_Info_$704_memory_ptr",
+                                "typeString": "struct Certificate_Info memory"
+                              }
+                            },
+                            "id": 180,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "756:18:1",
+                            "memberName": "admissionTimestamp",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 696,
+                            "src": "750:24:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_bytes32",
+                              "typeString": "bytes32"
+                            },
+                            {
+                              "typeIdentifier": "t_bytes32",
+                              "typeString": "bytes32"
+                            },
+                            {
+                              "typeIdentifier": "t_enum$_ECertificateCategory_$642",
+                              "typeString": "enum ECertificateCategory"
+                            },
+                            {
+                              "typeIdentifier": "t_enum$_EHonor_$649",
+                              "typeString": "enum EHonor"
+                            },
+                            {
+                              "typeIdentifier": "t_enum$_EStudyStatus_$652",
+                              "typeString": "enum EStudyStatus"
+                            },
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            },
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            },
+                            {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            },
+                            {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          ],
+                          "expression": {
+                            "id": 163,
+                            "name": "abi",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967295,
+                            "src": "605:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_abi",
+                              "typeString": "abi"
+                            }
+                          },
+                          "id": 164,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "609:12:1",
+                          "memberName": "encodePacked",
+                          "nodeType": "MemberAccess",
+                          "src": "605:16:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                            "typeString": "function () pure returns (bytes memory)"
+                          }
+                        },
+                        "id": 181,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "605:170:1",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "id": 162,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4294967288,
+                      "src": "595:9:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (bytes memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 182,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "595:181:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "576:200:1"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 186,
+                        "name": "certHash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 161,
+                        "src": "801:8:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 185,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "nodeType": "ElementaryTypeNameExpression",
+                      "src": "793:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_uint256_$",
+                        "typeString": "type(uint256)"
+                      },
+                      "typeName": {
+                        "id": 184,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "793:7:1",
+                        "typeDescriptions": {}
+                      }
+                    },
+                    "id": 187,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "793:17:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 109,
+                  "id": 188,
+                  "nodeType": "Return",
+                  "src": "786:24:1"
+                }
+              ]
+            },
+            "id": 190,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "hashCertificate",
+            "nameLocation": "126:15:1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 106,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 105,
+                  "mutability": "mutable",
+                  "name": "_cert",
+                  "nameLocation": "166:5:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 190,
+                  "src": "142:29:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Certificate_Info_$704_memory_ptr",
+                    "typeString": "struct Certificate_Info"
+                  },
+                  "typeName": {
+                    "id": 104,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 103,
+                      "name": "Certificate_Info",
+                      "nameLocations": [
+                        "142:16:1"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 704,
+                      "src": "142:16:1"
+                    },
+                    "referencedDeclaration": 704,
+                    "src": "142:16:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Certificate_Info_$704_storage_ptr",
+                      "typeString": "struct Certificate_Info"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "141:31:1"
+            },
+            "returnParameters": {
+              "id": 109,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 108,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 190,
+                  "src": "196:7:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 107,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "196:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "195:9:1"
+            },
+            "scope": 191,
+            "src": "117:700:1",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 192,
+        "src": "84:735:1",
+        "usedErrors": []
+      }
+    ],
+    "src": "31:788:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2024-03-31T05:43:06.588Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

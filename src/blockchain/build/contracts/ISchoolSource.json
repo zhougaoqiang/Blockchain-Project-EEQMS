@@ -1,0 +1,2364 @@
+{
+  "contractName": "ISchoolSource",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_verify",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_certSig",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tranSig",
+          "type": "uint256"
+        }
+      ],
+      "name": "addGraduatedStudent",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getGraduatedStudentCertificateSignature",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getGraduatedStudentTranscriptSignature",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_verify",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "studentAdd",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "nationality",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "nric",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "passport",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "add",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct Student_Info",
+          "name": "_stdInfo",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "schoolContractAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "add",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "email",
+              "type": "string"
+            },
+            {
+              "internalType": "enum ECertificateCategory[]",
+              "name": "allowedCategory",
+              "type": "uint8[]"
+            }
+          ],
+          "internalType": "struct School_Info",
+          "name": "_schoolInfo",
+          "type": "tuple"
+        }
+      ],
+      "name": "newStudent",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_verify",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_studId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "professor",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "result",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "grade",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct Course_Info",
+          "name": "_courseList",
+          "type": "tuple"
+        }
+      ],
+      "name": "addCurrentStudentCourseInfo",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_verify",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_stuId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getCurrentStudentCertificate",
+      "outputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "schoolContractAddress",
+                  "type": "address"
+                },
+                {
+                  "internalType": "string",
+                  "name": "id",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "add",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "email",
+                  "type": "string"
+                },
+                {
+                  "internalType": "enum ECertificateCategory[]",
+                  "name": "allowedCategory",
+                  "type": "uint8[]"
+                }
+              ],
+              "internalType": "struct School_Info",
+              "name": "schoolInfo",
+              "type": "tuple"
+            },
+            {
+              "internalType": "enum ECertificateCategory",
+              "name": "category",
+              "type": "uint8"
+            },
+            {
+              "internalType": "enum EHonor",
+              "name": "honor",
+              "type": "uint8"
+            },
+            {
+              "internalType": "enum EStudyStatus",
+              "name": "status",
+              "type": "uint8"
+            },
+            {
+              "internalType": "string",
+              "name": "major",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "certificateId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "admissionTimestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "graduationTimestamp",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "studentAdd",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "id",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "nationality",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "nric",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "passport",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "add",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct Student_Info",
+              "name": "studentDetails",
+              "type": "tuple"
+            },
+            {
+              "internalType": "uint256",
+              "name": "signature",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Certificate_Info",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_verify",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_stuId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getCurrentStudentTranscript",
+      "outputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "schoolContractAddress",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "id",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "name",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "add",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "email",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "enum ECertificateCategory[]",
+                      "name": "allowedCategory",
+                      "type": "uint8[]"
+                    }
+                  ],
+                  "internalType": "struct School_Info",
+                  "name": "schoolInfo",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "enum ECertificateCategory",
+                  "name": "category",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "enum EHonor",
+                  "name": "honor",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "enum EStudyStatus",
+                  "name": "status",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "string",
+                  "name": "major",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "description",
+                  "type": "string"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "certificateId",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "admissionTimestamp",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "graduationTimestamp",
+                  "type": "uint256"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "studentAdd",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "id",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "nationality",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "nric",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "passport",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "name",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "add",
+                      "type": "string"
+                    }
+                  ],
+                  "internalType": "struct Student_Info",
+                  "name": "studentDetails",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "signature",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Certificate_Info",
+              "name": "certificate",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "id",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "professor",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "result",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "grade",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct Course_Info[]",
+              "name": "courseList",
+              "type": "tuple[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "signature",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Transcript_Info",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_verify",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_studId",
+          "type": "uint256"
+        }
+      ],
+      "name": "isCurrentStudent",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_verify",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "schoolContractAddress",
+                  "type": "address"
+                },
+                {
+                  "internalType": "string",
+                  "name": "id",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "add",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "email",
+                  "type": "string"
+                },
+                {
+                  "internalType": "enum ECertificateCategory[]",
+                  "name": "allowedCategory",
+                  "type": "uint8[]"
+                }
+              ],
+              "internalType": "struct School_Info",
+              "name": "schoolInfo",
+              "type": "tuple"
+            },
+            {
+              "internalType": "enum ECertificateCategory",
+              "name": "category",
+              "type": "uint8"
+            },
+            {
+              "internalType": "enum EHonor",
+              "name": "honor",
+              "type": "uint8"
+            },
+            {
+              "internalType": "enum EStudyStatus",
+              "name": "status",
+              "type": "uint8"
+            },
+            {
+              "internalType": "string",
+              "name": "major",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "certificateId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "admissionTimestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "graduationTimestamp",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "studentAdd",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "id",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "nationality",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "nric",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "passport",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "add",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct Student_Info",
+              "name": "studentDetails",
+              "type": "tuple"
+            },
+            {
+              "internalType": "uint256",
+              "name": "signature",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Certificate_Info",
+          "name": "_cert",
+          "type": "tuple"
+        }
+      ],
+      "name": "updateStudentCertificate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_verify",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "schoolContractAddress",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "id",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "name",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "add",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "email",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "enum ECertificateCategory[]",
+                      "name": "allowedCategory",
+                      "type": "uint8[]"
+                    }
+                  ],
+                  "internalType": "struct School_Info",
+                  "name": "schoolInfo",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "enum ECertificateCategory",
+                  "name": "category",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "enum EHonor",
+                  "name": "honor",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "enum EStudyStatus",
+                  "name": "status",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "string",
+                  "name": "major",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "description",
+                  "type": "string"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "certificateId",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "admissionTimestamp",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "graduationTimestamp",
+                  "type": "uint256"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "studentAdd",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "id",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "nationality",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "nric",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "passport",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "name",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "add",
+                      "type": "string"
+                    }
+                  ],
+                  "internalType": "struct Student_Info",
+                  "name": "studentDetails",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "signature",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Certificate_Info",
+              "name": "certificate",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "id",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "professor",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "result",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "grade",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct Course_Info[]",
+              "name": "courseList",
+              "type": "tuple[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "signature",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Transcript_Info",
+          "name": "_trans",
+          "type": "tuple"
+        }
+      ],
+      "name": "setStudentTranscript",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_verify",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_studId",
+          "type": "uint256"
+        }
+      ],
+      "name": "checkGraduateRequirement",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_verify",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_studId",
+          "type": "uint256"
+        }
+      ],
+      "name": "removeStudent",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_verify\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_studId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"professor\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"result\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"grade\",\"type\":\"string\"}],\"internalType\":\"struct Course_Info\",\"name\":\"_courseList\",\"type\":\"tuple\"}],\"name\":\"addCurrentStudentCourseInfo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_verify\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_certSig\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_tranSig\",\"type\":\"uint256\"}],\"name\":\"addGraduatedStudent\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_verify\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_studId\",\"type\":\"uint256\"}],\"name\":\"checkGraduateRequirement\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_verify\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_stuId\",\"type\":\"uint256\"}],\"name\":\"getCurrentStudentCertificate\",\"outputs\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"schoolContractAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"add\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"enum ECertificateCategory[]\",\"name\":\"allowedCategory\",\"type\":\"uint8[]\"}],\"internalType\":\"struct School_Info\",\"name\":\"schoolInfo\",\"type\":\"tuple\"},{\"internalType\":\"enum ECertificateCategory\",\"name\":\"category\",\"type\":\"uint8\"},{\"internalType\":\"enum EHonor\",\"name\":\"honor\",\"type\":\"uint8\"},{\"internalType\":\"enum EStudyStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"major\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"certificateId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"admissionTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"graduationTimestamp\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"studentAdd\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"nationality\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"nric\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"passport\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"add\",\"type\":\"string\"}],\"internalType\":\"struct Student_Info\",\"name\":\"studentDetails\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"signature\",\"type\":\"uint256\"}],\"internalType\":\"struct Certificate_Info\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_verify\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_stuId\",\"type\":\"uint256\"}],\"name\":\"getCurrentStudentTranscript\",\"outputs\":[{\"components\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"schoolContractAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"add\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"enum ECertificateCategory[]\",\"name\":\"allowedCategory\",\"type\":\"uint8[]\"}],\"internalType\":\"struct School_Info\",\"name\":\"schoolInfo\",\"type\":\"tuple\"},{\"internalType\":\"enum ECertificateCategory\",\"name\":\"category\",\"type\":\"uint8\"},{\"internalType\":\"enum EHonor\",\"name\":\"honor\",\"type\":\"uint8\"},{\"internalType\":\"enum EStudyStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"major\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"certificateId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"admissionTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"graduationTimestamp\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"studentAdd\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"nationality\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"nric\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"passport\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"add\",\"type\":\"string\"}],\"internalType\":\"struct Student_Info\",\"name\":\"studentDetails\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"signature\",\"type\":\"uint256\"}],\"internalType\":\"struct Certificate_Info\",\"name\":\"certificate\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"professor\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"result\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"grade\",\"type\":\"string\"}],\"internalType\":\"struct Course_Info[]\",\"name\":\"courseList\",\"type\":\"tuple[]\"},{\"internalType\":\"uint256\",\"name\":\"signature\",\"type\":\"uint256\"}],\"internalType\":\"struct Transcript_Info\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"getGraduatedStudentCertificateSignature\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"getGraduatedStudentTranscriptSignature\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_verify\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_studId\",\"type\":\"uint256\"}],\"name\":\"isCurrentStudent\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_verify\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"studentAdd\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"nationality\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"nric\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"passport\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"add\",\"type\":\"string\"}],\"internalType\":\"struct Student_Info\",\"name\":\"_stdInfo\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"schoolContractAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"add\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"enum ECertificateCategory[]\",\"name\":\"allowedCategory\",\"type\":\"uint8[]\"}],\"internalType\":\"struct School_Info\",\"name\":\"_schoolInfo\",\"type\":\"tuple\"}],\"name\":\"newStudent\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_verify\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_studId\",\"type\":\"uint256\"}],\"name\":\"removeStudent\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_verify\",\"type\":\"address\"},{\"components\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"schoolContractAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"add\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"enum ECertificateCategory[]\",\"name\":\"allowedCategory\",\"type\":\"uint8[]\"}],\"internalType\":\"struct School_Info\",\"name\":\"schoolInfo\",\"type\":\"tuple\"},{\"internalType\":\"enum ECertificateCategory\",\"name\":\"category\",\"type\":\"uint8\"},{\"internalType\":\"enum EHonor\",\"name\":\"honor\",\"type\":\"uint8\"},{\"internalType\":\"enum EStudyStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"major\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"certificateId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"admissionTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"graduationTimestamp\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"studentAdd\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"nationality\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"nric\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"passport\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"add\",\"type\":\"string\"}],\"internalType\":\"struct Student_Info\",\"name\":\"studentDetails\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"signature\",\"type\":\"uint256\"}],\"internalType\":\"struct Certificate_Info\",\"name\":\"certificate\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"professor\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"result\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"grade\",\"type\":\"string\"}],\"internalType\":\"struct Course_Info[]\",\"name\":\"courseList\",\"type\":\"tuple[]\"},{\"internalType\":\"uint256\",\"name\":\"signature\",\"type\":\"uint256\"}],\"internalType\":\"struct Transcript_Info\",\"name\":\"_trans\",\"type\":\"tuple\"}],\"name\":\"setStudentTranscript\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_verify\",\"type\":\"address\"},{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"schoolContractAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"id\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"add\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"enum ECertificateCategory[]\",\"name\":\"allowedCategory\",\"type\":\"uint8[]\"}],\"internalType\":\"struct School_Info\",\"name\":\"schoolInfo\",\"type\":\"tuple\"},{\"internalType\":\"enum ECertificateCategory\",\"name\":\"category\",\"type\":\"uint8\"},{\"internalType\":\"enum EHonor\",\"name\":\"honor\",\"type\":\"uint8\"},{\"internalType\":\"enum EStudyStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"major\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"certificateId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"admissionTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"graduationTimestamp\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"studentAdd\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"nationality\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"nric\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"passport\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"add\",\"type\":\"string\"}],\"internalType\":\"struct Student_Info\",\"name\":\"studentDetails\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"signature\",\"type\":\"uint256\"}],\"internalType\":\"struct Certificate_Info\",\"name\":\"_cert\",\"type\":\"tuple\"}],\"name\":\"updateStudentCertificate\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/ISchoolSource.sol\":\"ISchoolSource\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/IOffice.sol\":{\"keccak256\":\"0xa97f1bfb9484f587c8cb0da38a71fc09224c8122ac8030866059f81875b917a1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://79c97c7ed72d39c9c0f3ce8bf5ac708de938969ecff5679619c5227baaf8eb3f\",\"dweb:/ipfs/QmbBNxbwd1xq4zLhez658snpshv4dWAFmX4Yz9bNPzUBJ6\"]},\"project:/contracts/ISchoolSource.sol\":{\"keccak256\":\"0x7ec09dcd657377118c69573c993bef50ea8fca52646a2eb3fbc678b6e2822c25\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7bd95ba737e4f562f0a42131cabf33d907e7aba6e5499024b3309214945af3fb\",\"dweb:/ipfs/QmdGSyG7uDcVX6KYoS7G7AoJTmJhMToHmiPsPvH88tjjht\"]},\"project:/contracts/SchoolDefinition.sol\":{\"keccak256\":\"0xc3e44fec585898d9a6eafba8b33f4cc870c8d46ab6eaf09bd0bb650ef6ecb712\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://98e5523a0156031ece2363d3d576282e3ab6e4947cd889a27641528de685245c\",\"dweb:/ipfs/QmW5vj5adKNRGKjD4kYRnfqfs92wQigSbFHq2Qhd3wxQzR\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "//SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport \"./SchoolDefinition.sol\";\nimport \"./IOffice.sol\";\n\ninterface ISchoolSource\n{\n    function addGraduatedStudent(address _verify, uint256 id, uint256 _certSig, uint256 _tranSig) external;\n    function getGraduatedStudentCertificateSignature(uint256 id) external view returns (uint256);\n    function getGraduatedStudentTranscriptSignature(uint256 id) external view returns (uint256);\n    function newStudent(address _verify, Student_Info memory _stdInfo, School_Info memory _schoolInfo) external;\n    function addCurrentStudentCourseInfo(address _verify, uint256 _studId, Course_Info memory _courseList) external;\n    function getCurrentStudentCertificate(address _verify, uint256 _stuId) external view returns (Certificate_Info memory);\n    function getCurrentStudentTranscript(address _verify, uint256 _stuId) external view returns (Transcript_Info memory);\n    function isCurrentStudent(address _verify, uint256 _studId) external view returns (bool);\n    function updateStudentCertificate(address _verify, Certificate_Info memory _cert)external;\n    function setStudentTranscript(address _verify, Transcript_Info memory _trans) external;\n    function checkGraduateRequirement(address _verify, uint256 _studId) external view returns (bool);\n    function removeStudent(address _verify, uint256 _studId) external;\n}\n",
+  "sourcePath": "/Users/zhougaoqiang/Documents/GitHub/SmartCertify/web-app/blockchain/contracts/ISchoolSource.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/ISchoolSource.sol",
+    "exportedSymbols": {
+      "Certificate_Info": [
+        2751
+      ],
+      "Course_Info": [
+        2762
+      ],
+      "ECertificateCategory": [
+        2682
+      ],
+      "EHonor": [
+        2689
+      ],
+      "EStudyStatus": [
+        2693
+      ],
+      "IOffice": [
+        1265
+      ],
+      "ISchoolSource": [
+        1447
+      ],
+      "School_Info": [
+        2708
+      ],
+      "Student_Info": [
+        2723
+      ],
+      "Transcript_Info": [
+        2772
+      ]
+    },
+    "id": 1448,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1337,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "31:23:12"
+      },
+      {
+        "absolutePath": "project:/contracts/SchoolDefinition.sol",
+        "file": "./SchoolDefinition.sol",
+        "id": 1338,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1448,
+        "sourceUnit": 2773,
+        "src": "56:32:12",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/IOffice.sol",
+        "file": "./IOffice.sol",
+        "id": 1339,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1448,
+        "sourceUnit": 1266,
+        "src": "89:23:12",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ISchoolSource",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 1447,
+        "linearizedBaseContracts": [
+          1447
+        ],
+        "name": "ISchoolSource",
+        "nameLocation": "124:13:12",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "6ae56395",
+            "id": 1350,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addGraduatedStudent",
+            "nameLocation": "153:19:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1348,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1341,
+                  "mutability": "mutable",
+                  "name": "_verify",
+                  "nameLocation": "181:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1350,
+                  "src": "173:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1340,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "173:7:12",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1343,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "198:2:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1350,
+                  "src": "190:10:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1342,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "190:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1345,
+                  "mutability": "mutable",
+                  "name": "_certSig",
+                  "nameLocation": "210:8:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1350,
+                  "src": "202:16:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1344,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "202:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1347,
+                  "mutability": "mutable",
+                  "name": "_tranSig",
+                  "nameLocation": "228:8:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1350,
+                  "src": "220:16:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1346,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "220:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "172:65:12"
+            },
+            "returnParameters": {
+              "id": 1349,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "246:0:12"
+            },
+            "scope": 1447,
+            "src": "144:103:12",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "02989bc6",
+            "id": 1357,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getGraduatedStudentCertificateSignature",
+            "nameLocation": "261:39:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1353,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1352,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "309:2:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1357,
+                  "src": "301:10:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1351,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "301:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "300:12:12"
+            },
+            "returnParameters": {
+              "id": 1356,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1355,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1357,
+                  "src": "336:7:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1354,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "336:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "335:9:12"
+            },
+            "scope": 1447,
+            "src": "252:93:12",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "094f0dec",
+            "id": 1364,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getGraduatedStudentTranscriptSignature",
+            "nameLocation": "359:38:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1360,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1359,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "406:2:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1364,
+                  "src": "398:10:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1358,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "398:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "397:12:12"
+            },
+            "returnParameters": {
+              "id": 1363,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1362,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1364,
+                  "src": "433:7:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1361,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "433:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "432:9:12"
+            },
+            "scope": 1447,
+            "src": "350:92:12",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "406750c5",
+            "id": 1375,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "newStudent",
+            "nameLocation": "456:10:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1373,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1366,
+                  "mutability": "mutable",
+                  "name": "_verify",
+                  "nameLocation": "475:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1375,
+                  "src": "467:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1365,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "467:7:12",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1369,
+                  "mutability": "mutable",
+                  "name": "_stdInfo",
+                  "nameLocation": "504:8:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1375,
+                  "src": "484:28:12",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Student_Info_$2723_memory_ptr",
+                    "typeString": "struct Student_Info"
+                  },
+                  "typeName": {
+                    "id": 1368,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1367,
+                      "name": "Student_Info",
+                      "nameLocations": [
+                        "484:12:12"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2723,
+                      "src": "484:12:12"
+                    },
+                    "referencedDeclaration": 2723,
+                    "src": "484:12:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Student_Info_$2723_storage_ptr",
+                      "typeString": "struct Student_Info"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1372,
+                  "mutability": "mutable",
+                  "name": "_schoolInfo",
+                  "nameLocation": "533:11:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1375,
+                  "src": "514:30:12",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_School_Info_$2708_memory_ptr",
+                    "typeString": "struct School_Info"
+                  },
+                  "typeName": {
+                    "id": 1371,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1370,
+                      "name": "School_Info",
+                      "nameLocations": [
+                        "514:11:12"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2708,
+                      "src": "514:11:12"
+                    },
+                    "referencedDeclaration": 2708,
+                    "src": "514:11:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_School_Info_$2708_storage_ptr",
+                      "typeString": "struct School_Info"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "466:79:12"
+            },
+            "returnParameters": {
+              "id": 1374,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "554:0:12"
+            },
+            "scope": 1447,
+            "src": "447:108:12",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "a24176fe",
+            "id": 1385,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addCurrentStudentCourseInfo",
+            "nameLocation": "569:27:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1383,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1377,
+                  "mutability": "mutable",
+                  "name": "_verify",
+                  "nameLocation": "605:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1385,
+                  "src": "597:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1376,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "597:7:12",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1379,
+                  "mutability": "mutable",
+                  "name": "_studId",
+                  "nameLocation": "622:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1385,
+                  "src": "614:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1378,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "614:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1382,
+                  "mutability": "mutable",
+                  "name": "_courseList",
+                  "nameLocation": "650:11:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1385,
+                  "src": "631:30:12",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Course_Info_$2762_memory_ptr",
+                    "typeString": "struct Course_Info"
+                  },
+                  "typeName": {
+                    "id": 1381,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1380,
+                      "name": "Course_Info",
+                      "nameLocations": [
+                        "631:11:12"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2762,
+                      "src": "631:11:12"
+                    },
+                    "referencedDeclaration": 2762,
+                    "src": "631:11:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Course_Info_$2762_storage_ptr",
+                      "typeString": "struct Course_Info"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "596:66:12"
+            },
+            "returnParameters": {
+              "id": 1384,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "671:0:12"
+            },
+            "scope": 1447,
+            "src": "560:112:12",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "b336fd1a",
+            "id": 1395,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCurrentStudentCertificate",
+            "nameLocation": "686:28:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1390,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1387,
+                  "mutability": "mutable",
+                  "name": "_verify",
+                  "nameLocation": "723:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1395,
+                  "src": "715:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1386,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "715:7:12",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1389,
+                  "mutability": "mutable",
+                  "name": "_stuId",
+                  "nameLocation": "740:6:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1395,
+                  "src": "732:14:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1388,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "732:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "714:33:12"
+            },
+            "returnParameters": {
+              "id": 1394,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1393,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1395,
+                  "src": "771:23:12",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Certificate_Info_$2751_memory_ptr",
+                    "typeString": "struct Certificate_Info"
+                  },
+                  "typeName": {
+                    "id": 1392,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1391,
+                      "name": "Certificate_Info",
+                      "nameLocations": [
+                        "771:16:12"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2751,
+                      "src": "771:16:12"
+                    },
+                    "referencedDeclaration": 2751,
+                    "src": "771:16:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Certificate_Info_$2751_storage_ptr",
+                      "typeString": "struct Certificate_Info"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "770:25:12"
+            },
+            "scope": 1447,
+            "src": "677:119:12",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "faca840d",
+            "id": 1405,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCurrentStudentTranscript",
+            "nameLocation": "810:27:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1400,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1397,
+                  "mutability": "mutable",
+                  "name": "_verify",
+                  "nameLocation": "846:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1405,
+                  "src": "838:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1396,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "838:7:12",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1399,
+                  "mutability": "mutable",
+                  "name": "_stuId",
+                  "nameLocation": "863:6:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1405,
+                  "src": "855:14:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1398,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "855:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "837:33:12"
+            },
+            "returnParameters": {
+              "id": 1404,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1403,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1405,
+                  "src": "894:22:12",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Transcript_Info_$2772_memory_ptr",
+                    "typeString": "struct Transcript_Info"
+                  },
+                  "typeName": {
+                    "id": 1402,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1401,
+                      "name": "Transcript_Info",
+                      "nameLocations": [
+                        "894:15:12"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2772,
+                      "src": "894:15:12"
+                    },
+                    "referencedDeclaration": 2772,
+                    "src": "894:15:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Transcript_Info_$2772_storage_ptr",
+                      "typeString": "struct Transcript_Info"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "893:24:12"
+            },
+            "scope": 1447,
+            "src": "801:117:12",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "c6ef5884",
+            "id": 1414,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isCurrentStudent",
+            "nameLocation": "932:16:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1410,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1407,
+                  "mutability": "mutable",
+                  "name": "_verify",
+                  "nameLocation": "957:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1414,
+                  "src": "949:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1406,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "949:7:12",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1409,
+                  "mutability": "mutable",
+                  "name": "_studId",
+                  "nameLocation": "974:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1414,
+                  "src": "966:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1408,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "966:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "948:34:12"
+            },
+            "returnParameters": {
+              "id": 1413,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1412,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1414,
+                  "src": "1006:4:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1411,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1006:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1005:6:12"
+            },
+            "scope": 1447,
+            "src": "923:89:12",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "7cea1563",
+            "id": 1422,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateStudentCertificate",
+            "nameLocation": "1026:24:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1420,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1416,
+                  "mutability": "mutable",
+                  "name": "_verify",
+                  "nameLocation": "1059:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1422,
+                  "src": "1051:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1415,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1051:7:12",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1419,
+                  "mutability": "mutable",
+                  "name": "_cert",
+                  "nameLocation": "1092:5:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1422,
+                  "src": "1068:29:12",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Certificate_Info_$2751_memory_ptr",
+                    "typeString": "struct Certificate_Info"
+                  },
+                  "typeName": {
+                    "id": 1418,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1417,
+                      "name": "Certificate_Info",
+                      "nameLocations": [
+                        "1068:16:12"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2751,
+                      "src": "1068:16:12"
+                    },
+                    "referencedDeclaration": 2751,
+                    "src": "1068:16:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Certificate_Info_$2751_storage_ptr",
+                      "typeString": "struct Certificate_Info"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1050:48:12"
+            },
+            "returnParameters": {
+              "id": 1421,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1106:0:12"
+            },
+            "scope": 1447,
+            "src": "1017:90:12",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "a7965f15",
+            "id": 1430,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setStudentTranscript",
+            "nameLocation": "1121:20:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1428,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1424,
+                  "mutability": "mutable",
+                  "name": "_verify",
+                  "nameLocation": "1150:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1430,
+                  "src": "1142:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1423,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1142:7:12",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1427,
+                  "mutability": "mutable",
+                  "name": "_trans",
+                  "nameLocation": "1182:6:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1430,
+                  "src": "1159:29:12",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Transcript_Info_$2772_memory_ptr",
+                    "typeString": "struct Transcript_Info"
+                  },
+                  "typeName": {
+                    "id": 1426,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1425,
+                      "name": "Transcript_Info",
+                      "nameLocations": [
+                        "1159:15:12"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2772,
+                      "src": "1159:15:12"
+                    },
+                    "referencedDeclaration": 2772,
+                    "src": "1159:15:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Transcript_Info_$2772_storage_ptr",
+                      "typeString": "struct Transcript_Info"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1141:48:12"
+            },
+            "returnParameters": {
+              "id": 1429,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1198:0:12"
+            },
+            "scope": 1447,
+            "src": "1112:87:12",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "9ad991a7",
+            "id": 1439,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "checkGraduateRequirement",
+            "nameLocation": "1213:24:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1435,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1432,
+                  "mutability": "mutable",
+                  "name": "_verify",
+                  "nameLocation": "1246:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1439,
+                  "src": "1238:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1431,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1238:7:12",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1434,
+                  "mutability": "mutable",
+                  "name": "_studId",
+                  "nameLocation": "1263:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1439,
+                  "src": "1255:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1433,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1255:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1237:34:12"
+            },
+            "returnParameters": {
+              "id": 1438,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1437,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1439,
+                  "src": "1295:4:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1436,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1295:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1294:6:12"
+            },
+            "scope": 1447,
+            "src": "1204:97:12",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "d6021092",
+            "id": 1446,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeStudent",
+            "nameLocation": "1315:13:12",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1444,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1441,
+                  "mutability": "mutable",
+                  "name": "_verify",
+                  "nameLocation": "1337:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1446,
+                  "src": "1329:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1440,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1329:7:12",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1443,
+                  "mutability": "mutable",
+                  "name": "_studId",
+                  "nameLocation": "1354:7:12",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1446,
+                  "src": "1346:15:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1442,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1346:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1328:34:12"
+            },
+            "returnParameters": {
+              "id": 1445,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1371:0:12"
+            },
+            "scope": 1447,
+            "src": "1306:66:12",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1448,
+        "src": "114:1260:12",
+        "usedErrors": []
+      }
+    ],
+    "src": "31:1344:12"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2024-03-29T16:51:57.707Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
