@@ -1,6 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 import "./IGovernment.sol";
+import "./openzeppelin/token/ERC20/IERC20.sol";
 
 contract Government is IGovernment
 {   
@@ -10,11 +11,13 @@ contract Government is IGovernment
     mapping(address => bool) private registeredPersons;
     mapping(address => bool) private registeredCompanies;
     mapping(address => bool) private registeredSchools;
+    IERC20 erc20;
 
-    constructor()
+    constructor(address _eth)
     {
         owner = msg.sender;
         adminList[msg.sender] = true;
+        erc20 = IERC20(_eth);
     }
 
     modifier onlyOwner()
@@ -46,6 +49,7 @@ contract Government is IGovernment
 
     function registerCompany(address _add) public onlyAdmin()
     {
+        erc20.approve(_add, 1*10**18);
         registeredCompanies[_add] = true;
     }
 
@@ -67,5 +71,10 @@ contract Government is IGovernment
     function registerPerson(address _add) public onlyAdmin()
     {
         registeredPersons[_add] = true;
+    }
+
+    function getBanlance() public view returns (uint256)
+    {
+        return erc20.balanceOf(owner);
     }
 }

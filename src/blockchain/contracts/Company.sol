@@ -6,14 +6,13 @@ import "./IGovernment.sol";
 import "./ISchool.sol";
 import "./IPerson.sol";
 import "./CertificateHashLib.sol";
+import "./openzeppelin/token/ERC20/IERC20.sol";
 
 contract Company
 {
     using CertificateHashLib for * ;
     event VerificationResult(bool result);
     event hasCertificate(uint256);
-
-
     address owner;
     mapping(address => bool) private adminList;
 
@@ -22,9 +21,10 @@ contract Company
     Company_Info public companyInfo;
     IGovernment governmentAddress;
     Certificate_Info public tmpCertifcate;
+    IERC20 erc20;
 
     constructor(address _gov, string memory _uenNo, 
-        string memory _name, string memory _profile, string memory _add)
+        string memory _name, string memory _profile, string memory _add, address _etk)
     {
         governmentAddress = IGovernment(_gov);
         owner = msg.sender;
@@ -33,6 +33,7 @@ contract Company
         companyInfo.profile = _profile;
         companyInfo.add = _add;
         companyInfo.id = uint256(keccak256(abi.encodePacked(_uenNo, _name, _profile, _add)));
+        erc20 = IERC20(_etk);
     }
 
     modifier onlyOwner()
@@ -128,7 +129,13 @@ contract Company
     {
         uint256 hc = CertificateHashLib.hashCertificate(tmpCertifcate);
         ISchool schoolContract = ISchool(tmpCertifcate.schoolInfo.schoolContractAddress);
-        bool result = schoolContract.directVerifyGraduatedStudentCertificate(tmpCertifcate.studentDetails.id, hc);
+        bool result = schoolContract.directVerifyGraduatedStudentCertificate(msg.sender, tmpCertifcate.studentDetails.id, hc);
         return result;
+    }
+
+    //any admin or owner can check balance, however, only the owner can receive register company rewards.
+    function getBanlance() public view returns (uint256)
+    {
+        return erc20.balanceOf(msg.sender);
     }
 }

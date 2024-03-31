@@ -5,6 +5,7 @@ import "./Definition.sol";
 import "./ICertificate.sol";
 import "./ISchool.sol";
 import "./CertificateHashLib.sol";
+import "./openzeppelin/token/ERC20/IERC20.sol";
 
 contract School is ISchool
 {
@@ -25,8 +26,8 @@ contract School is ISchool
     mapping(uint256 => Certificate_Info) private studsCerts;
     StudIdNamePair[] studentArray;
     mapping(uint256 => uint256) private certSignatures; //signature generate after graduate
-
-    constructor(string memory _schoolId, string memory _name, string memory _phyAdd, string memory _email)
+    IERC20 erc20;
+    constructor(string memory _schoolId, string memory _name, string memory _phyAdd, string memory _email, address _erc20)
     {
         owner = msg.sender;
         schoolInfo.schoolContractAddress = address(this);
@@ -34,6 +35,7 @@ contract School is ISchool
         schoolInfo.name = _name;
         schoolInfo.add = _phyAdd;
         schoolInfo.email = _email;
+        erc20 = IERC20(_erc20);
     }
 
     modifier onlyOwner()
@@ -141,7 +143,6 @@ contract School is ISchool
         return false;
     }
 
-    // need support ERC20 here
     function verifyGraduatedStudentCertificate(Certificate_Info memory _cert) external override returns (bool)
     {
         uint256 sig = CertificateHashLib.hashCertificate(_cert);
@@ -150,8 +151,16 @@ contract School is ISchool
     }
 
     // need support ERC20 here, this is better, no need check event
-    function directVerifyGraduatedStudentCertificate(uint256 _studId, uint256 _signature) external view override returns (bool)
+    // company must pay to school owner, not admin
+    function directVerifyGraduatedStudentCertificate(address companyWallet, uint256 _studId, uint256 _signature) external view override returns (bool)
     {
+        require(erc20.allowance(companyWallet, owner) > 1000, "not enought");
         return certSignatures[_studId] == _signature;
+    }
+
+     // only get the school owner's balance.
+    function getBanlance() public view returns (uint256)
+    {
+        return erc20.balanceOf(owner);
     }
 }
